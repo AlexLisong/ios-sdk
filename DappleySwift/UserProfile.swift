@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftProtobuf
+import SwiftGRPC
 
 public struct UserProfile {
     /// The user id.
@@ -15,7 +17,8 @@ public struct UserProfile {
     /// A URL to the user's profile.
     public let profileURL: URL?
     
-    
+    let defaultTimeout: TimeInterval = 0.5
+
     /**
      Creates a new instance of `Profile`.
      - parameter userId: The user id.
@@ -27,6 +30,21 @@ public struct UserProfile {
         self.profileURL = profileURL
     }
     public func display() -> String{
+        //
+        let address = "127.0.0.1" + ":" + "50051"
+        let channel = Channel(address: address, secure: false)
+        let request = Rpcpb_GetBlockchainInfoRequest.init()
+        _ = Rpcpb_GetBlockchainInfoResponse.init()
+        channel.timeout = defaultTimeout
+        let client = Rpcpb_RpcServiceServiceClient.init(channel: channel)
+        client.timeout = defaultTimeout
+
+        _ = try? client.rpcGetBlockchainInfo(request, completion: { (response, CallResult) in
+            print("RESPONSE:\(String(describing: response?.blockHeight))\(String(describing: response?.tailBlockHash))\(CallResult.statusCode)\(String(describing: CallResult.resultData))")
+                print("Result:\(CallResult)")
+
+            })
+        
         return self.userId
     }
     //--------------------------------------

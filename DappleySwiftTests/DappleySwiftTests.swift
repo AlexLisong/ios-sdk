@@ -7,31 +7,40 @@
 //
 
 import XCTest
+import SwiftGRPC
+import SwiftProtobuf
+import SwiftGRPC
+
 @testable import DappleySwift
 
 class DappleySwiftTests: XCTestCase {
-
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testExample() {
-        let up = UserProfile (userId: "12uu", profileURL: nil)
-        let n = up.display()
-        print(n)
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        gRPC.initialize()
+        print("GRPC version", gRPC.version)
+        let up = UserProfile (userId: "12", profileURL: nil)
+       // gRPC.shutdown()
+        assert(up.display() == "12")
+        gRPC.shutdown()
+        
     }
-
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
 }
+
+
