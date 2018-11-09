@@ -30,6 +30,7 @@ class DappleySwiftTests: XCTestCase {
         let up = UserProfile (userId: "12", profileURL: nil)
        // gRPC.shutdown()
         assert(up.display() == "12")
+        print(up.GetBlockchainInfo())
         gRPC.shutdown()
         
     }

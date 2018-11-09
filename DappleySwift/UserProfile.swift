@@ -29,22 +29,18 @@ public struct UserProfile {
         self.userId = userId
         self.profileURL = profileURL
     }
-    public func display() -> String{
-        //
-        let address = "127.0.0.1" + ":" + "50051"
+    public func GetBlockchainInfo() -> UInt64{
+        let address = "127.0.0.1:50051"
         let channel = Channel(address: address, secure: false)
         let request = Rpcpb_GetBlockchainInfoRequest.init()
-        _ = Rpcpb_GetBlockchainInfoResponse.init()
-        channel.timeout = defaultTimeout
         let client = Rpcpb_RpcServiceServiceClient.init(channel: channel)
-        client.timeout = defaultTimeout
-
-        _ = try? client.rpcGetBlockchainInfo(request, completion: { (response, CallResult) in
-            print("RESPONSE:\(String(describing: response?.blockHeight))\(String(describing: response?.tailBlockHash))\(CallResult.statusCode)\(String(describing: CallResult.resultData))")
-                print("Result:\(CallResult)")
-
-            })
         
+        let response = try? client.rpcGetBlockchainInfo(request)
+        return response?.blockHeight ?? 0
+    }
+
+    public func display() -> String{
+        //
         return self.userId
     }
     //--------------------------------------
