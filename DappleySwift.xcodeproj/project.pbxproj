@@ -12,7 +12,7 @@
 		995C119B218D185F0072FFF5 /* DappleySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995C1191218D185F0072FFF5 /* DappleySwift.framework */; };
 		995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */; };
 		995C11A2218D185F0072FFF5 /* DappleySwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 995C1194218D185F0072FFF5 /* DappleySwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		995C11AC218D1A320072FFF5 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11AB218D1A320072FFF5 /* UserProfile.swift */; };
+		995C11AC218D1A320072FFF5 /* RpcProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11AB218D1A320072FFF5 /* RpcProvider.swift */; };
 		995C11B62193DCB40072FFF5 /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11AE2193DCB40072FFF5 /* rpc.pb.swift */; };
 		995C11B72193DCB40072FFF5 /* rpc.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11AF2193DCB40072FFF5 /* rpc.grpc.swift */; };
 		995C11B82193DCB40072FFF5 /* block.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B02193DCB40072FFF5 /* block.pb.swift */; };
@@ -46,7 +46,7 @@
 		995C119A218D185F0072FFF5 /* DappleySwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DappleySwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DappleySwiftTests.swift; sourceTree = "<group>"; };
 		995C11A1218D185F0072FFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		995C11AB218D1A320072FFF5 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		995C11AB218D1A320072FFF5 /* RpcProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RpcProvider.swift; sourceTree = "<group>"; };
 		995C11AE2193DCB40072FFF5 /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
 		995C11AF2193DCB40072FFF5 /* rpc.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.grpc.swift; sourceTree = "<group>"; };
 		995C11B02193DCB40072FFF5 /* block.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = block.pb.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 			children = (
 				995C1194218D185F0072FFF5 /* DappleySwift.h */,
 				995C1195218D185F0072FFF5 /* Info.plist */,
-				995C11AB218D1A320072FFF5 /* UserProfile.swift */,
+				995C11AB218D1A320072FFF5 /* RpcProvider.swift */,
 			);
 			path = DappleySwift;
 			sourceTree = "<group>";
@@ -353,7 +353,7 @@
 				995C11B92193DCB40072FFF5 /* transaction.proto in Sources */,
 				995C11B62193DCB40072FFF5 /* rpc.pb.swift in Sources */,
 				995C11B72193DCB40072FFF5 /* rpc.grpc.swift in Sources */,
-				995C11AC218D1A320072FFF5 /* UserProfile.swift in Sources */,
+				995C11AC218D1A320072FFF5 /* RpcProvider.swift in Sources */,
 				995C11BB2193DCB40072FFF5 /* peerlist.proto in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

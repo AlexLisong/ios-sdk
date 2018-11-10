@@ -27,10 +27,15 @@ class DappleySwiftTests: XCTestCase {
         
         gRPC.initialize()
         print("GRPC version", gRPC.version)
-        let up = UserProfile (userId: "12", profileURL: nil)
+        let rpc = RpcProvider (host: "127.0.0.1:50051")
        // gRPC.shutdown()
-        assert(up.display() == "12")
-        print(up.GetBlockchainInfo())
+        print(rpc.GetBlockchainInfo())
+        print(rpc.GetBlockByHeight())
+
+        print("the number of blocks: \(rpc.GetBlocks())")
+
+        print(rpc.GetBalance(address: "dXShZuANnsCV7EqVWdpvrDM7DuyfXPjKsu"))
+        
         gRPC.shutdown()
         
     }
