@@ -6,6 +6,21 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		99C405FB2198387B002A7439 /* DappleyAggregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 99C405FC2198387B002A7439 /* Build configuration list for PBXAggregateTarget "DappleyAggregate" */;
+			buildPhases = (
+				99C40601219838CA002A7439 /* ShellScript */,
+			);
+			dependencies = (
+				99C40600219838A5002A7439 /* PBXTargetDependency */,
+			);
+			name = DappleyAggregate;
+			productName = DappleyAggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		4212203070011CACB44D335A /* Pods_DappleySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A0E9135D41226159FF520A /* Pods_DappleySwift.framework */; };
 		65394E063227AE3C7D9D63B5 /* Pods_DappleySwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */; };
@@ -22,10 +37,19 @@
 		995C11BC2193DCB40072FFF5 /* block.proto in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B42193DCB40072FFF5 /* block.proto */; };
 		995C11BD2193DCB40072FFF5 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B52193DCB40072FFF5 /* transaction.pb.swift */; };
 		995C11BF2193E98E0072FFF5 /* peerlist.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11BE2193E98E0072FFF5 /* peerlist.pb.swift */; };
+		99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060221983A99002A7439 /* SwiftProtobuf.framework */; };
+		99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060421983A9E002A7439 /* SwiftGRPC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		995C119C218D185F0072FFF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 995C1188218D185F0072FFF5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 995C1190218D185F0072FFF5;
+			remoteInfo = DappleySwift;
+		};
+		99C405FF219838A5002A7439 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 995C1188218D185F0072FFF5 /* Project object */;
 			proxyType = 1;
@@ -56,6 +80,8 @@
 		995C11B42193DCB40072FFF5 /* block.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = block.proto; sourceTree = "<group>"; };
 		995C11B52193DCB40072FFF5 /* transaction.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transaction.pb.swift; sourceTree = "<group>"; };
 		995C11BE2193E98E0072FFF5 /* peerlist.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peerlist.pb.swift; sourceTree = "<group>"; };
+		99C4060221983A99002A7439 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99C4060421983A9E002A7439 /* SwiftGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DappleySwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -64,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */,
+				99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */,
 				4212203070011CACB44D335A /* Pods_DappleySwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +178,8 @@
 		FC17C1A0AF0F95EE318E2067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99C4060421983A9E002A7439 /* SwiftGRPC.framework */,
+				99C4060221983A99002A7439 /* SwiftProtobuf.framework */,
 				65A0E9135D41226159FF520A /* Pods_DappleySwift.framework */,
 				D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */,
 			);
@@ -226,6 +256,9 @@
 					995C1199218D185F0072FFF5 = {
 						CreatedOnToolsVersion = 10.0;
 					};
+					99C405FB2198387B002A7439 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 				};
 			};
 			buildConfigurationList = 995C118B218D185F0072FFF5 /* Build configuration list for PBXProject "DappleySwift" */;
@@ -242,6 +275,7 @@
 			targets = (
 				995C1190218D185F0072FFF5 /* DappleySwift */,
 				995C1199218D185F0072FFF5 /* DappleySwiftTests */,
+				99C405FB2198387B002A7439 /* DappleyAggregate */,
 			);
 		};
 /* End PBXProject section */
@@ -338,6 +372,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		99C40601219838CA002A7439 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n#要build的target名\nTARGET_NAME=${PROJECT_NAME}\nif [[ $1 ]]\nthen\nTARGET_NAME=$1\nfi\nUNIVERSAL_OUTPUT_FOLDER=\"${SRCROOT}/${PROJECT_NAME}/\"\n\n#创建输出目录，并删除之前的framework文件\nmkdir -p \"${UNIVERSAL_OUTPUT_FOLDER}\"\nrm -rf \"${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework\"\n\n#分别编译模拟器和真机的Framework\nxcodebuild -target \"${TARGET_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${TARGET_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n#拷贝framework到univer目录\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework\" \"${UNIVERSAL_OUTPUT_FOLDER}\"\n\n#合并framework，输出最终的framework到build目录\nlipo -create -output \"${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/${TARGET_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${TARGET_NAME}.framework/${TARGET_NAME}\"\n\n#删除编译之后生成的无关的配置文件\ndir_path=\"${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/\"\nfor file in ls $dir_path\ndo\nif [[ ${file} =~ \".xcconfig\" ]]\nthen\nrm -f \"${dir_path}/${file}\"\nfi\ndone\n#判断build文件夹是否存在，存在则删除\nif [ -d \"${SRCROOT}/build\" ]\nthen\nrm -rf \"${SRCROOT}/build\"\nfi\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos\"\n#打开合并后的文件夹\nopen \"${UNIVERSAL_OUTPUT_FOLDER}\"\n\n作者：山神_云网工作室\n链接：https://www.jianshu.com/p/ef5a888e57f2\n來源：简书\n简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -373,6 +424,11 @@
 			isa = PBXTargetDependency;
 			target = 995C1190218D185F0072FFF5 /* DappleySwift */;
 			targetProxy = 995C119C218D185F0072FFF5 /* PBXContainerItemProxy */;
+		};
+		99C40600219838A5002A7439 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 995C1190218D185F0072FFF5 /* DappleySwift */;
+			targetProxy = 99C405FF219838A5002A7439 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -506,18 +562,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DappleySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = dappworks.DappleySwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -534,18 +591,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DappleySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = dappworks.DappleySwift;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -592,6 +650,22 @@
 			};
 			name = Release;
 		};
+		99C405FD2198387B002A7439 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		99C405FE2198387B002A7439 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -618,6 +692,15 @@
 			buildConfigurations = (
 				995C11A9218D185F0072FFF5 /* Debug */,
 				995C11AA218D185F0072FFF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		99C405FC2198387B002A7439 /* Build configuration list for PBXAggregateTarget "DappleyAggregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				99C405FD2198387B002A7439 /* Debug */,
+				99C405FE2198387B002A7439 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
