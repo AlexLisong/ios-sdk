@@ -15,6 +15,7 @@ public struct RpcProvider {
     public let secure: Bool
     let channel: Channel
     let serviceClient: Rpcpb_RpcServiceServiceClient
+    let adminClient: Rpcpb_AdminServiceServiceClient
     let defaultTimeout: TimeInterval = 0.5
 
     /**
@@ -28,12 +29,28 @@ public struct RpcProvider {
         self.secure = secure
         self.channel = Channel(address: host, secure: false)
         self.serviceClient = Rpcpb_RpcServiceServiceClient.init(channel: self.channel)
+        self.adminClient =  Rpcpb_AdminServiceServiceClient.init(channel: self.channel)
+    }
+
+    public func Send(from: String, to: String, amount: Data) -> String{
+        var request = Rpcpb_SendRequest.init()
+        request.from = from
+        request.to = to
+        request.amount = amount
+        let response = try? self.adminClient.rpcSend(request)
+        
+        print("rpcSend:\(response?.message)")
+       
+        return response?.message ?? ""
+        
     }
     
     public func GetBlocks() -> Int{
         var request = Rpcpb_GetBlocksRequest.init()
         request.maxCount = 20
+        
         let response = try? self.serviceClient.rpcGetBlocks(request)
+       // print(response?.blocks[0].header.hash)
 
         print(response?.blocks[0].header.hash)
         print(response?.blocks[0].header.timestamp)
@@ -45,8 +62,10 @@ public struct RpcProvider {
     public func GetBalance(address: String) -> Int64{
         var request = Rpcpb_GetBalanceRequest.init()
         request.address = address
+        request.name = "getBalance"
         let response = try? serviceClient.rpcGetBalance(request)
-        return response?.amount ?? 0
+        print(response?.message)
+        return response?.amount ?? -1
     }
     
     public func GetBlockByHeight() -> Int{

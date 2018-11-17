@@ -26,15 +26,20 @@ class DappleySwiftTests: XCTestCase {
     func testExample() {
         
         gRPC.initialize()
-        print("GRPC version", gRPC.version)
+        //print("GRPC version", gRPC.version)
         let rpc = RpcProvider (host: "127.0.0.1:50051")
        // gRPC.shutdown()
         print(rpc.GetBlockchainInfo())
         print(rpc.GetBlockByHeight())
-
+        var myInt = 1
+        var amount = Data(bytes: &myInt,
+                             count: MemoryLayout.size(ofValue: myInt))
+        rpc.Send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", to: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", amount: amount)
+        //Lis-MacBook-Pro:cli lisong$ ./cli send -from dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW -to dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp -amount 1
+        
         print("the number of blocks: \(rpc.GetBlocks())")
 
-        print(rpc.GetBalance(address: "dXShZuANnsCV7EqVWdpvrDM7DuyfXPjKsu"))
+        print("get balance: \(rpc.GetBalance(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW"))")
         
         gRPC.shutdown()
         
