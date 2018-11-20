@@ -37,6 +37,15 @@
 		995C11BC2193DCB40072FFF5 /* block.proto in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B42193DCB40072FFF5 /* block.proto */; };
 		995C11BD2193DCB40072FFF5 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B52193DCB40072FFF5 /* transaction.pb.swift */; };
 		995C11BF2193E98E0072FFF5 /* peerlist.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11BE2193E98E0072FFF5 /* peerlist.pb.swift */; };
+		996BCA2521A3C9E100D8CB13 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCA2421A3C9E100D8CB13 /* BitcoinKit.framework */; };
+		996BCA2621A3C9E100D8CB13 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCA2421A3C9E100D8CB13 /* BitcoinKit.framework */; };
+		996BCA2F21A3D08E00D8CB13 /* Base58Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2721A3D08E00D8CB13 /* Base58Tests.swift */; };
+		996BCA3021A3D08E00D8CB13 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 996BCA2821A3D08E00D8CB13 /* Info.plist */; };
+		996BCA3121A3D08E00D8CB13 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2921A3D08E00D8CB13 /* CryptoTests.swift */; };
+		996BCA3221A3D08E00D8CB13 /* BigNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2A21A3D08E00D8CB13 /* BigNumberTests.swift */; };
+		996BCA3321A3D08E00D8CB13 /* DappleySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2B21A3D08E00D8CB13 /* DappleySwiftTests.swift */; };
+		996BCA3421A3D08E00D8CB13 /* PrivateKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2C21A3D08E00D8CB13 /* PrivateKeyTests.swift */; };
+		996BCA3621A3D08E00D8CB13 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2E21A3D08E00D8CB13 /* AddressTests.swift */; };
 		99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060221983A99002A7439 /* SwiftProtobuf.framework */; };
 		99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060421983A9E002A7439 /* SwiftGRPC.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +89,14 @@
 		995C11B42193DCB40072FFF5 /* block.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = block.proto; sourceTree = "<group>"; };
 		995C11B52193DCB40072FFF5 /* transaction.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transaction.pb.swift; sourceTree = "<group>"; };
 		995C11BE2193E98E0072FFF5 /* peerlist.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peerlist.pb.swift; sourceTree = "<group>"; };
+		996BCA2421A3C9E100D8CB13 /* BitcoinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = "<group>"; };
+		996BCA2721A3D08E00D8CB13 /* Base58Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base58Tests.swift; sourceTree = "<group>"; };
+		996BCA2821A3D08E00D8CB13 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		996BCA2921A3D08E00D8CB13 /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
+		996BCA2A21A3D08E00D8CB13 /* BigNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNumberTests.swift; sourceTree = "<group>"; };
+		996BCA2B21A3D08E00D8CB13 /* DappleySwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DappleySwiftTests.swift; sourceTree = "<group>"; };
+		996BCA2C21A3D08E00D8CB13 /* PrivateKeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateKeyTests.swift; sourceTree = "<group>"; };
+		996BCA2E21A3D08E00D8CB13 /* AddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
 		99C4060221983A99002A7439 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C4060421983A9E002A7439 /* SwiftGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DappleySwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996BCA2521A3C9E100D8CB13 /* BitcoinKit.framework in Frameworks */,
 				99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */,
 				99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */,
 				4212203070011CACB44D335A /* Pods_DappleySwift.framework in Frameworks */,
@@ -101,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				995C119B218D185F0072FFF5 /* DappleySwift.framework in Frameworks */,
+				996BCA2621A3C9E100D8CB13 /* BitcoinKit.framework in Frameworks */,
 				65394E063227AE3C7D9D63B5 /* Pods_DappleySwiftTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +161,13 @@
 		995C119E218D185F0072FFF5 /* DappleySwiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				996BCA2E21A3D08E00D8CB13 /* AddressTests.swift */,
+				996BCA2721A3D08E00D8CB13 /* Base58Tests.swift */,
+				996BCA2A21A3D08E00D8CB13 /* BigNumberTests.swift */,
+				996BCA2921A3D08E00D8CB13 /* CryptoTests.swift */,
+				996BCA2B21A3D08E00D8CB13 /* DappleySwiftTests.swift */,
+				996BCA2821A3D08E00D8CB13 /* Info.plist */,
+				996BCA2C21A3D08E00D8CB13 /* PrivateKeyTests.swift */,
 				995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */,
 				995C11A1218D185F0072FFF5 /* Info.plist */,
 			);
@@ -178,6 +204,7 @@
 		FC17C1A0AF0F95EE318E2067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				996BCA2421A3C9E100D8CB13 /* BitcoinKit.framework */,
 				99C4060421983A9E002A7439 /* SwiftGRPC.framework */,
 				99C4060221983A99002A7439 /* SwiftProtobuf.framework */,
 				65A0E9135D41226159FF520A /* Pods_DappleySwift.framework */,
@@ -292,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996BCA3021A3D08E00D8CB13 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +335,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DappleySwiftTests/Pods-DappleySwiftTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
@@ -317,6 +346,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
@@ -414,6 +444,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */,
+				996BCA3221A3D08E00D8CB13 /* BigNumberTests.swift in Sources */,
+				996BCA3121A3D08E00D8CB13 /* CryptoTests.swift in Sources */,
+				996BCA3321A3D08E00D8CB13 /* DappleySwiftTests.swift in Sources */,
+				996BCA2F21A3D08E00D8CB13 /* Base58Tests.swift in Sources */,
+				996BCA3621A3D08E00D8CB13 /* AddressTests.swift in Sources */,
+				996BCA3421A3D08E00D8CB13 /* PrivateKeyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +602,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DappleySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -595,6 +635,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DappleySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -618,6 +662,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DappleySwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,6 +685,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = DappleySwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

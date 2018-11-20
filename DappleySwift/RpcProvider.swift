@@ -9,6 +9,7 @@
 import Foundation
 import SwiftProtobuf
 import SwiftGRPC
+import BitcoinKit
 
 public struct RpcProvider {
     public let host: String
@@ -33,16 +34,37 @@ public struct RpcProvider {
     }
 
     public func Send(from: String, to: String, amount: Data) -> String{
+
+        var vin = Corepb_TXInput.init()
+        
+        var vout = Corepb_TXOutput.init()
+        vout.contract = "some contract"
+//        guard let keyPair = try? Cryptography.createKeyPair() else {
+//            fatalError("Wallet could not be initialized because the key generation failed.")
+//        }
+        
+        var transaction = Corepb_Transaction.init()
+        transaction.tip = 1
+        //transaction.vin = [vin]
+        transaction.vout = [vout]
+        /*
         var request = Rpcpb_SendRequest.init()
         request.from = from
         request.to = to
         request.amount = amount
         let response = try? self.adminClient.rpcSend(request)
+        */
         
-        print("rpcSend:\(response?.message)")
+        var request = Rpcpb_SendTransactionRequest.init()
+        request.transaction = transaction
+        
+        
+        let response = try? self.serviceClient.rpcSendTransaction(request)
+
+       // print("rpcSend:\(response?.message)")
        
-        return response?.message ?? ""
-        
+        //return response?.message ?? ""
+        return ""
     }
     
     public func GetBlocks() -> Int{
@@ -72,10 +94,23 @@ public struct RpcProvider {
         var request = Rpcpb_GetBlockByHeightRequest()
         request.height = 1
         let response = try? serviceClient.rpcGetBlockByHeight(request)
+        for transaction in (response?.block.transactions)!{
+            print(transaction.tip)
+            print(transaction.id)
+            for vout in transaction.vout{
+                print(vout.contract)
+                print(vout.pubKeyHash)
+                
+            }
+        }
         return (response?.block.hashValue)!
     }
     
     public func GetBlockchainInfo() -> UInt64{
+        let privateKey = PrivateKey(network: .testnet) // You can choose .mainnet or .testnet
+        let wallet = Wallet(privateKey: privateKey)
+        print("wallet \(wallet.publicKey)")
+        
         let request = Rpcpb_GetBlockchainInfoRequest.init()
         let response = try? serviceClient.rpcGetBlockchainInfo(request)
         return response?.blockHeight ?? 0

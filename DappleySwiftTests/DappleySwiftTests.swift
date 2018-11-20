@@ -12,6 +12,7 @@ import SwiftProtobuf
 import SwiftGRPC
 
 @testable import DappleySwift
+@testable import BitcoinKit
 
 class DappleySwiftTests: XCTestCase {
     
