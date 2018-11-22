@@ -10,6 +10,7 @@ target 'DappleySwift' do
   pod 'SwiftGRPC'
   pod 'SwiftProtobuf', '~> 1.0'
   pod 'BitcoinKit'
+  pod 'CryptoSwift'
 
   # Pods for DappleySwift
 

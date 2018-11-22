@@ -9,10 +9,9 @@
 import XCTest
 import SwiftGRPC
 import SwiftProtobuf
-import SwiftGRPC
 
 @testable import DappleySwift
-@testable import BitcoinKit
+//@testable import BitcoinKit
 
 class DappleySwiftTests: XCTestCase {
     

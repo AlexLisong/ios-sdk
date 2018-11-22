@@ -10,7 +10,8 @@ import Foundation
 import SwiftProtobuf
 import SwiftGRPC
 import BitcoinKit
-
+import BitcoinKit.Private
+import CryptoSwift
 public struct RpcProvider {
     public let host: String
     public let secure: Bool
@@ -31,8 +32,33 @@ public struct RpcProvider {
         self.channel = Channel(address: host, secure: false)
         self.serviceClient = Rpcpb_RpcServiceServiceClient.init(channel: self.channel)
         self.adminClient =  Rpcpb_AdminServiceServiceClient.init(channel: self.channel)
-    }
 
+        //let ctx = secp256k1_context_create(SECP256K1_CONTEXT_SIGN)
+        //secp256k1_context *ctx = secp256k1_context_create(SECP256K1_CONTEXT_SIGN);
+
+    }
+    /*
+    public func sign(hash: Data, privateKey: Data) -> secp256k1_ecdsa_recoverable_signature? {
+        precondition(hash.count == 32, "Hash must be 32 bytes size")
+        var signature = secp256k1_ecdsa_recoverable_signature()
+        let status = privateKey.withUnsafeBytes { (key: UnsafePointer<UInt8>) in
+            hash.withUnsafeBytes { secp256k1_ecdsa_sign_recoverable(context, &signature, $0, key, nil, nil) }
+        }
+        return status == 1 ? signature : nil
+    }*/
+    public func testSign() {
+        let pk = Data(hex: "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a")!
+        let msg = Crypto.sha256("hello world".data(using: .ascii)!)
+        print("msg: \(msg.hex)")
+        let privateKey = PrivateKey(data: pk)
+        // let signature = try? sign(msg, privateKey: privateKey)
+       // let signature = try CryptoEthereumSwift.Crypto.sign(msg, privateKey: privateKey)
+        
+        print(privateKey.raw.hex)
+        //XCTAssertNotNil(signature)
+        //XCTAssertEqual(signature?.hex, "cd7c36f9cf69feb13f75859382fcdc2ac6c97d9c13dbbe42dc4ceb7eb29f454b101528db47edb53ce7cffc99f251e47ecfa689fc6730de7aae7ba540e64d672f01")
+    }
+    
     public func Send(from: String, to: String, amount: Data) -> String{
 
         var vin = Corepb_TXInput.init()
@@ -114,6 +140,38 @@ public struct RpcProvider {
         let request = Rpcpb_GetBlockchainInfoRequest.init()
         let response = try? serviceClient.rpcGetBlockchainInfo(request)
         return response?.blockHeight ?? 0
+    }
+    public func Secp256k1(){
+        //public static void testSecp256k1() throws UnsupportedEncodingException {
+        //let privateKey = "f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b"
+       // let sig = Crypto.sign(Data, privateKey: privateKey.data(using: <#T##String.Encoding#>))
+        //let hash = Crypto.sha256(entropy)
+
+        // let privateKeyBytes = BigNumber.init(privateKey)//  HashUtil.fromECDSAPrivateKey(new BigInteger(privateKey, 16));
+
+       /* let privateKeyBytes =  HashUtil.fromECDSAPrivateKey(new BigInteger(privateKey, 16));
+        let hello_string = "hello world";
+            byte[] data = hello_string.getBytes("UTF-8");
+            data = ShaDigest.sha256(data);
+            byte[] sign = HashUtil.secp256k1Sign(data, privateKeyBytes);
+            String signValue = HexUtil.toHex(sign);
+            System.out.println(signValue);*/
+       // }
+        /*
+        let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))!;
+        var signature : secp256k1_ecdsa_signature;
+        var normalizedSignature : secp256k1_ecdsa_signature;
+        let message = Data(base64Encoded:"hello world")
+        let msgdata = Crypto.sha256(message!);
+
+        secp256k1_ecdsa_sign(ctx, &signature, msgdata, privateKey.bytes, NULL, NULL);
+         secp256k1_ecdsa_signature_normalize(ctx, normalizedSignature, signature);
+         let siglen = 74;
+         let der = NSMutableData.init(siglen)// dataWithLength:siglen];
+         secp256k1_ecdsa_signature_serialize_der(ctx, der.mutableBytes, siglen, normalizedSignature);
+         der.length = siglen
+         secp256k1_context_destroy(ctx);
+         //return der;*/
     }
 }
     
