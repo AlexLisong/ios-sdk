@@ -35,18 +35,47 @@ public struct RpcProvider {
     }
 
     public func Send(from: String, to: String, amount: Data) -> String{
-        var request = Rpcpb_SendRequest.init()
-        request.from = from
+        TransactionManager.newTransaction()
+        var request = Rpcpb_SendTransactionRequest.init()
+        /*request.from = from
         request.to = to
-        request.amount = amount
-        let response = try? self.adminClient.rpcSend(request)
+        request.amount = amount*/
+        var vin: Corepb_TXInput = Corepb_TXInput.init()
+        var vout: Corepb_TXOutput = Corepb_TXOutput.init()
+        /*
+        BigInteger totalAmount = buildVin(transaction, utxos, ecKeyPair);
         
-        print("rpcSend:\(response?.message)")
+        // add vout list. If there is change is this transaction, vout list wound have two elements, or have just one to coin receiver.
+        buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair);
+*/
+        request.transaction.vin = [vin]
+        request.transaction.vout = [vout]
+        request.transaction.id = amount
+        request.transaction.tip = 4
+        
+        let response = try? self.serviceClient.rpcSendTransaction(request)
+        
+        print("rpcSend:\(response?.textFormatString())")
        
-        return response?.message ?? ""
+        return response?.textFormatString() ?? ""
         
     }
-    
+    public func GetUtxos(address: String) -> [Utxo]{
+        var request = Rpcpb_GetUTXORequest.init()
+        request.address = address
+        
+        let response = try? self.serviceClient.rpcGetUTXO(request)
+        // print(response?.blocks[0].header.hash)
+        var utxoList = [Utxo]()
+        print("getutxo: \(response?.errorCode)")
+        for u in response!.utxos{
+            utxoList.append(Utxo(amount: u.amount,publicKeyHash: u.publicKeyHash,txid: u.txid,txIndex: u.txIndex))
+        }
+        for u in utxoList{
+            print("utxo: \(u.amount) - \(u.publicKeyHash)")
+        }
+        return utxoList
+    }
     public func GetBlocks() -> Int{
         var request = Rpcpb_GetBlocksRequest.init()
         request.maxCount = 20
