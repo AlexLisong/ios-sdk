@@ -24,7 +24,9 @@
 /* Begin PBXBuildFile section */
 		4212203070011CACB44D335A /* Pods_DappleySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A0E9135D41226159FF520A /* Pods_DappleySwift.framework */; };
 		65394E063227AE3C7D9D63B5 /* Pods_DappleySwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */; };
+		80C02715C9EAD436C71F65FB /* Pods_DappleySwift_DappleySwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6746517CBD73B6F909B069E5 /* Pods_DappleySwift_DappleySwiftTests.framework */; };
 		995C119B218D185F0072FFF5 /* DappleySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995C1191218D185F0072FFF5 /* DappleySwift.framework */; };
+		995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */; };
 		995C11A2218D185F0072FFF5 /* DappleySwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 995C1194218D185F0072FFF5 /* DappleySwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		995C11AC218D1A320072FFF5 /* RpcProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11AB218D1A320072FFF5 /* RpcProvider.swift */; };
 		995C11B62193DCB40072FFF5 /* rpc.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11AE2193DCB40072FFF5 /* rpc.pb.swift */; };
@@ -36,16 +38,13 @@
 		995C11BC2193DCB40072FFF5 /* block.proto in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B42193DCB40072FFF5 /* block.proto */; };
 		995C11BD2193DCB40072FFF5 /* transaction.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11B52193DCB40072FFF5 /* transaction.pb.swift */; };
 		995C11BF2193E98E0072FFF5 /* peerlist.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C11BE2193E98E0072FFF5 /* peerlist.pb.swift */; };
-		996BCA2F21A3D08E00D8CB13 /* Base58Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2721A3D08E00D8CB13 /* Base58Tests.swift */; };
-		996BCA3021A3D08E00D8CB13 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 996BCA2821A3D08E00D8CB13 /* Info.plist */; };
-		996BCA3121A3D08E00D8CB13 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2921A3D08E00D8CB13 /* CryptoTests.swift */; };
-		996BCA3221A3D08E00D8CB13 /* BigNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2A21A3D08E00D8CB13 /* BigNumberTests.swift */; };
-		996BCA3321A3D08E00D8CB13 /* DappleySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2B21A3D08E00D8CB13 /* DappleySwiftTests.swift */; };
-		996BCA3421A3D08E00D8CB13 /* PrivateKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2C21A3D08E00D8CB13 /* PrivateKeyTests.swift */; };
-		996BCA3621A3D08E00D8CB13 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCA2E21A3D08E00D8CB13 /* AddressTests.swift */; };
-		996BCA3E21A575AC00D8CB13 /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCA3D21A575AC00D8CB13 /* CryptoEthereumSwift.framework */; };
-		996BCA4021A575B800D8CB13 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCA3F21A575B800D8CB13 /* CryptoSwift.framework */; };
-		996BCA4221A575C100D8CB13 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCA4121A575C100D8CB13 /* EthereumKit.framework */; };
+		996BCAAE21A6C5B400D8CB13 /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCAAD21A6C5B400D8CB13 /* CryptoEthereumSwift.framework */; };
+		996BCAB021A6C5C200D8CB13 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCAAF21A6C5C200D8CB13 /* CryptoSwift.framework */; };
+		996BCAB221A6C5CE00D8CB13 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCAB121A6C5CE00D8CB13 /* EthereumKit.framework */; };
+		996BCAB421A6CD7400D8CB13 /* HashUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996BCAB321A6CD7400D8CB13 /* HashUtil.swift */; };
+		996BCACF21A6DA3E00D8CB13 /* CryptoEthereumSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCAAD21A6C5B400D8CB13 /* CryptoEthereumSwift.framework */; };
+		996BCAD021A6DA4900D8CB13 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCAAF21A6C5C200D8CB13 /* CryptoSwift.framework */; };
+		996BCAD121A6DA5200D8CB13 /* EthereumKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996BCAB121A6C5CE00D8CB13 /* EthereumKit.framework */; };
 		99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060221983A99002A7439 /* SwiftProtobuf.framework */; };
 		99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060421983A9E002A7439 /* SwiftGRPC.framework */; };
 /* End PBXBuildFile section */
@@ -73,10 +72,13 @@
 		5F90577E2AB8DF8D6519AA07 /* Pods-DappleySwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwiftTests/Pods-DappleySwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		650551E660D6ABDB75C302B4 /* Pods-DappleySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift/Pods-DappleySwift.debug.xcconfig"; sourceTree = "<group>"; };
 		65A0E9135D41226159FF520A /* Pods_DappleySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DappleySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6746517CBD73B6F909B069E5 /* Pods_DappleySwift_DappleySwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DappleySwift_DappleySwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ED452012E9885A7204BFCED /* Pods-DappleySwift-DappleySwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift-DappleySwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		995C1191218D185F0072FFF5 /* DappleySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DappleySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		995C1194218D185F0072FFF5 /* DappleySwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappleySwift.h; sourceTree = "<group>"; };
 		995C1195218D185F0072FFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		995C119A218D185F0072FFF5 /* DappleySwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DappleySwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DappleySwiftTests.swift; sourceTree = "<group>"; };
 		995C11A1218D185F0072FFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		995C11AB218D1A320072FFF5 /* RpcProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RpcProvider.swift; sourceTree = "<group>"; };
 		995C11AE2193DCB40072FFF5 /* rpc.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rpc.pb.swift; sourceTree = "<group>"; };
@@ -88,19 +90,15 @@
 		995C11B42193DCB40072FFF5 /* block.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = block.proto; sourceTree = "<group>"; };
 		995C11B52193DCB40072FFF5 /* transaction.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = transaction.pb.swift; sourceTree = "<group>"; };
 		995C11BE2193E98E0072FFF5 /* peerlist.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = peerlist.pb.swift; sourceTree = "<group>"; };
-		996BCA2721A3D08E00D8CB13 /* Base58Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base58Tests.swift; sourceTree = "<group>"; };
-		996BCA2821A3D08E00D8CB13 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		996BCA2921A3D08E00D8CB13 /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
-		996BCA2A21A3D08E00D8CB13 /* BigNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNumberTests.swift; sourceTree = "<group>"; };
-		996BCA2B21A3D08E00D8CB13 /* DappleySwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DappleySwiftTests.swift; sourceTree = "<group>"; };
-		996BCA2C21A3D08E00D8CB13 /* PrivateKeyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateKeyTests.swift; sourceTree = "<group>"; };
-		996BCA2E21A3D08E00D8CB13 /* AddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
-		996BCA3D21A575AC00D8CB13 /* CryptoEthereumSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoEthereumSwift.framework; path = Carthage/Build/iOS/CryptoEthereumSwift.framework; sourceTree = "<group>"; };
-		996BCA3F21A575B800D8CB13 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		996BCA4121A575C100D8CB13 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EthereumKit.framework; path = Carthage/Build/iOS/EthereumKit.framework; sourceTree = "<group>"; };
-		996BCA7E21A5B11A00D8CB13 /* libsecp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsecp256k1.a; path = Libraries/secp256k1/lib/libsecp256k1.a; sourceTree = "<group>"; };
+		996BCAAD21A6C5B400D8CB13 /* CryptoEthereumSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoEthereumSwift.framework; path = Carthage/Build/iOS/CryptoEthereumSwift.framework; sourceTree = "<group>"; };
+		996BCAAF21A6C5C200D8CB13 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		996BCAB121A6C5CE00D8CB13 /* EthereumKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EthereumKit.framework; path = Carthage/Build/iOS/EthereumKit.framework; sourceTree = "<group>"; };
+		996BCAB321A6CD7400D8CB13 /* HashUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashUtil.swift; sourceTree = "<group>"; };
+		996BCAC821A6D72A00D8CB13 /* SwiftGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		996BCACA21A6D72F00D8CB13 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C4060221983A99002A7439 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C4060421983A9E002A7439 /* SwiftGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CB3F9E287882275D04FA21 /* Pods-DappleySwift-DappleySwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift-DappleySwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DappleySwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -109,9 +107,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				996BCA4221A575C100D8CB13 /* EthereumKit.framework in Frameworks */,
-				996BCA4021A575B800D8CB13 /* CryptoSwift.framework in Frameworks */,
-				996BCA3E21A575AC00D8CB13 /* CryptoEthereumSwift.framework in Frameworks */,
+				996BCAB221A6C5CE00D8CB13 /* EthereumKit.framework in Frameworks */,
+				996BCAB021A6C5C200D8CB13 /* CryptoSwift.framework in Frameworks */,
+				996BCAAE21A6C5B400D8CB13 /* CryptoEthereumSwift.framework in Frameworks */,
 				99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */,
 				99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */,
 				4212203070011CACB44D335A /* Pods_DappleySwift.framework in Frameworks */,
@@ -122,8 +120,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996BCAD121A6DA5200D8CB13 /* EthereumKit.framework in Frameworks */,
+				996BCAD021A6DA4900D8CB13 /* CryptoSwift.framework in Frameworks */,
+				996BCACF21A6DA3E00D8CB13 /* CryptoEthereumSwift.framework in Frameworks */,
 				995C119B218D185F0072FFF5 /* DappleySwift.framework in Frameworks */,
 				65394E063227AE3C7D9D63B5 /* Pods_DappleySwiftTests.framework in Frameworks */,
+				80C02715C9EAD436C71F65FB /* Pods_DappleySwift_DappleySwiftTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +159,7 @@
 				995C1194218D185F0072FFF5 /* DappleySwift.h */,
 				995C1195218D185F0072FFF5 /* Info.plist */,
 				995C11AB218D1A320072FFF5 /* RpcProvider.swift */,
+				996BCAB321A6CD7400D8CB13 /* HashUtil.swift */,
 			);
 			path = DappleySwift;
 			sourceTree = "<group>";
@@ -164,13 +167,7 @@
 		995C119E218D185F0072FFF5 /* DappleySwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				996BCA2E21A3D08E00D8CB13 /* AddressTests.swift */,
-				996BCA2721A3D08E00D8CB13 /* Base58Tests.swift */,
-				996BCA2A21A3D08E00D8CB13 /* BigNumberTests.swift */,
-				996BCA2921A3D08E00D8CB13 /* CryptoTests.swift */,
-				996BCA2B21A3D08E00D8CB13 /* DappleySwiftTests.swift */,
-				996BCA2821A3D08E00D8CB13 /* Info.plist */,
-				996BCA2C21A3D08E00D8CB13 /* PrivateKeyTests.swift */,
+				995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */,
 				995C11A1218D185F0072FFF5 /* Info.plist */,
 			);
 			path = DappleySwiftTests;
@@ -199,6 +196,8 @@
 				148CD972587EC2926854CA01 /* Pods-DappleySwift.release.xcconfig */,
 				5F90577E2AB8DF8D6519AA07 /* Pods-DappleySwiftTests.debug.xcconfig */,
 				51DD8420B03313185E62C902 /* Pods-DappleySwiftTests.release.xcconfig */,
+				B4CB3F9E287882275D04FA21 /* Pods-DappleySwift-DappleySwiftTests.debug.xcconfig */,
+				8ED452012E9885A7204BFCED /* Pods-DappleySwift-DappleySwiftTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -206,14 +205,16 @@
 		FC17C1A0AF0F95EE318E2067 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				996BCA7E21A5B11A00D8CB13 /* libsecp256k1.a */,
-				996BCA4121A575C100D8CB13 /* EthereumKit.framework */,
-				996BCA3F21A575B800D8CB13 /* CryptoSwift.framework */,
-				996BCA3D21A575AC00D8CB13 /* CryptoEthereumSwift.framework */,
+				996BCACA21A6D72F00D8CB13 /* SwiftProtobuf.framework */,
+				996BCAC821A6D72A00D8CB13 /* SwiftGRPC.framework */,
+				996BCAB121A6C5CE00D8CB13 /* EthereumKit.framework */,
+				996BCAAF21A6C5C200D8CB13 /* CryptoSwift.framework */,
+				996BCAAD21A6C5B400D8CB13 /* CryptoEthereumSwift.framework */,
 				99C4060421983A9E002A7439 /* SwiftGRPC.framework */,
 				99C4060221983A99002A7439 /* SwiftProtobuf.framework */,
 				65A0E9135D41226159FF520A /* Pods_DappleySwift.framework */,
 				D578A3C4F6FB3F0B3A919ECF /* Pods_DappleySwiftTests.framework */,
+				6746517CBD73B6F909B069E5 /* Pods_DappleySwift_DappleySwiftTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,7 +325,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				996BCA3021A3D08E00D8CB13 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +339,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DappleySwiftTests/Pods-DappleySwiftTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
+				"${SRCROOT}/Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -352,9 +350,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -362,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DappleySwiftTests/Pods-DappleySwiftTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		154D218C98C03AEF0758E4BC /* [CP] Check Pods Manifest.lock */ = {
@@ -402,7 +398,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DappleySwiftTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-DappleySwift-DappleySwiftTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -433,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996BCAB421A6CD7400D8CB13 /* HashUtil.swift in Sources */,
 				995C11BF2193E98E0072FFF5 /* peerlist.pb.swift in Sources */,
 				995C11BC2193DCB40072FFF5 /* block.proto in Sources */,
 				995C11BA2193DCB40072FFF5 /* rpc.proto in Sources */,
@@ -450,12 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				996BCA3221A3D08E00D8CB13 /* BigNumberTests.swift in Sources */,
-				996BCA3121A3D08E00D8CB13 /* CryptoTests.swift in Sources */,
-				996BCA3321A3D08E00D8CB13 /* DappleySwiftTests.swift in Sources */,
-				996BCA2F21A3D08E00D8CB13 /* Base58Tests.swift in Sources */,
-				996BCA3621A3D08E00D8CB13 /* AddressTests.swift in Sources */,
-				996BCA3421A3D08E00D8CB13 /* PrivateKeyTests.swift in Sources */,
+				995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,9 +519,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/lib";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -587,9 +577,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -608,16 +596,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/include";
 				INFOPLIST_FILE = DappleySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -625,11 +611,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Libraries/secp256k1/lib",
-					"$(PROJECT_DIR)/Libraries/secp256k1/lib",
 				);
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = dappworks.DappleySwift;
@@ -648,16 +629,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
+				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/include";
 				INFOPLIST_FILE = DappleySwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -665,11 +644,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Libraries/secp256k1/lib",
-					"$(PROJECT_DIR)/Libraries/secp256k1/lib",
 				);
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = dappworks.DappleySwift;
@@ -682,22 +656,21 @@
 		};
 		995C11A9218D185F0072FFF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F90577E2AB8DF8D6519AA07 /* Pods-DappleySwiftTests.debug.xcconfig */;
+			baseConfigurationReference = B4CB3F9E287882275D04FA21 /* Pods-DappleySwift-DappleySwiftTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/include";
 				INFOPLIST_FILE = DappleySwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = dappworks.DappleySwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -707,22 +680,21 @@
 		};
 		995C11AA218D185F0072FFF5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51DD8420B03313185E62C902 /* Pods-DappleySwiftTests.release.xcconfig */;
+			baseConfigurationReference = 8ED452012E9885A7204BFCED /* Pods-DappleySwift-DappleySwiftTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/include";
 				INFOPLIST_FILE = DappleySwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/Libraries/secp256k1/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = dappworks.DappleySwiftTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
