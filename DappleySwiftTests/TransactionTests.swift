@@ -31,9 +31,9 @@ class TransactionTests: XCTestCase {
         let pk = Data(hex: "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a")
         let msg = CryptoHash.sha256("hello world".data(using: .ascii)!)
         print("msg: \(msg.toHexString())")
-        let util = HashUtil()
+        //let util = HashUtil()
         
-        XCTAssertEqual(util.Secp256k1Sign(hash: msg, privateKey: pk)!.toHexString(), "cd7c36f9cf69feb13f75859382fcdc2ac6c97d9c13dbbe42dc4ceb7eb29f454b101528db47edb53ce7cffc99f251e47ecfa689fc6730de7aae7ba540e64d672f01")
+        XCTAssertEqual(HashUtil.Secp256k1Sign(hash: msg, privateKey: pk)!.toHexString(), "cd7c36f9cf69feb13f75859382fcdc2ac6c97d9c13dbbe42dc4ceb7eb29f454b101528db47edb53ce7cffc99f251e47ecfa689fc6730de7aae7ba540e64d672f01")
     }
     func testPerformanceExample() {
         // This is an example of a performance test case.

@@ -42,6 +42,7 @@ public struct RpcProvider {
         request.amount = amount*/
         var vin: Corepb_TXInput = Corepb_TXInput.init()
         var vout: Corepb_TXOutput = Corepb_TXOutput.init()
+        
         /*
         BigInteger totalAmount = buildVin(transaction, utxos, ecKeyPair);
         
@@ -61,6 +62,7 @@ public struct RpcProvider {
         
     }
     public func GetUtxos(address: String) -> [Utxo]{
+        
         var request = Rpcpb_GetUTXORequest.init()
         request.address = address
         

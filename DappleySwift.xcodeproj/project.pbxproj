@@ -54,6 +54,10 @@
 		997EDC8021A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EDC7F21A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift */; };
 		997EDC8221A8995200263DB8 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EDC8121A8995200263DB8 /* WalletTests.swift */; };
 		997EDC8421A8ACC400263DB8 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EDC8321A8ACC400263DB8 /* TransactionTests.swift */; };
+		9994281021A8D68F0038BCA0 /* UtxoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994280F21A8D68F0038BCA0 /* UtxoManager.swift */; };
+		9994281421A8D9CF0038BCA0 /* KeyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281321A8D9CF0038BCA0 /* KeyUtil.swift */; };
+		9994281621A8DD4F0038BCA0 /* AddressUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281521A8DD4F0038BCA0 /* AddressUtil.swift */; };
+		9994281821A8DECA0038BCA0 /* AddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281721A8DECA0038BCA0 /* AddressTests.swift */; };
 		99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060221983A99002A7439 /* SwiftProtobuf.framework */; };
 		99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060421983A9E002A7439 /* SwiftGRPC.framework */; };
 /* End PBXBuildFile section */
@@ -114,6 +118,10 @@
 		997EDC7F21A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyAndPublicKeyTests.swift; sourceTree = "<group>"; };
 		997EDC8121A8995200263DB8 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		997EDC8321A8ACC400263DB8 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
+		9994280F21A8D68F0038BCA0 /* UtxoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoManager.swift; sourceTree = "<group>"; };
+		9994281321A8D9CF0038BCA0 /* KeyUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyUtil.swift; sourceTree = "<group>"; };
+		9994281521A8DD4F0038BCA0 /* AddressUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressUtil.swift; sourceTree = "<group>"; };
+		9994281721A8DECA0038BCA0 /* AddressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
 		99C4060221983A99002A7439 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C4060421983A9E002A7439 /* SwiftGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CB3F9E287882275D04FA21 /* Pods-DappleySwift-DappleySwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift-DappleySwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +161,8 @@
 		995C1187218D185F0072FFF5 = {
 			isa = PBXGroup;
 			children = (
+				9994281221A8D8DA0038BCA0 /* Crypto */,
+				9994281121A8D8CA0038BCA0 /* Util */,
 				997EDC7A21A892CE00263DB8 /* Chain */,
 				997EDC7121A88BC300263DB8 /* Model */,
 				995C11AD2193DC690072FFF5 /* proto */,
@@ -179,7 +189,6 @@
 				995C1194218D185F0072FFF5 /* DappleySwift.h */,
 				995C1195218D185F0072FFF5 /* Info.plist */,
 				995C11AB218D1A320072FFF5 /* RpcProvider.swift */,
-				996BCAB321A6CD7400D8CB13 /* HashUtil.swift */,
 			);
 			path = DappleySwift;
 			sourceTree = "<group>";
@@ -193,6 +202,7 @@
 				997EDC7F21A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift */,
 				997EDC8121A8995200263DB8 /* WalletTests.swift */,
 				997EDC8321A8ACC400263DB8 /* TransactionTests.swift */,
+				9994281721A8DECA0038BCA0 /* AddressTests.swift */,
 			);
 			path = DappleySwiftTests;
 			sourceTree = "<group>";
@@ -228,8 +238,26 @@
 			isa = PBXGroup;
 			children = (
 				997EDC7B21A892E400263DB8 /* TransactionManager.swift */,
+				9994280F21A8D68F0038BCA0 /* UtxoManager.swift */,
 			);
 			path = Chain;
+			sourceTree = "<group>";
+		};
+		9994281121A8D8CA0038BCA0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				996BCAB321A6CD7400D8CB13 /* HashUtil.swift */,
+				9994281321A8D9CF0038BCA0 /* KeyUtil.swift */,
+				9994281521A8DD4F0038BCA0 /* AddressUtil.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		9994281221A8D8DA0038BCA0 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Crypto;
 			sourceTree = "<group>";
 		};
 		D0F950219FC10EF7B7C2D59C /* Pods */ = {
@@ -475,6 +503,7 @@
 				996BCAB421A6CD7400D8CB13 /* HashUtil.swift in Sources */,
 				995C11BF2193E98E0072FFF5 /* peerlist.pb.swift in Sources */,
 				995C11BC2193DCB40072FFF5 /* block.proto in Sources */,
+				9994281021A8D68F0038BCA0 /* UtxoManager.swift in Sources */,
 				995C11BA2193DCB40072FFF5 /* rpc.proto in Sources */,
 				997EDC7C21A892E400263DB8 /* TransactionManager.swift in Sources */,
 				995C11B82193DCB40072FFF5 /* block.pb.swift in Sources */,
@@ -482,8 +511,10 @@
 				995C11BD2193DCB40072FFF5 /* transaction.pb.swift in Sources */,
 				995C11B92193DCB40072FFF5 /* transaction.proto in Sources */,
 				995C11B62193DCB40072FFF5 /* rpc.pb.swift in Sources */,
+				9994281421A8D9CF0038BCA0 /* KeyUtil.swift in Sources */,
 				995C11B72193DCB40072FFF5 /* rpc.grpc.swift in Sources */,
 				997EDC7321A88C2F00263DB8 /* Utxo.swift in Sources */,
+				9994281621A8DD4F0038BCA0 /* AddressUtil.swift in Sources */,
 				997EDC7921A8907000263DB8 /* TxOutput.swift in Sources */,
 				995C11AC218D1A320072FFF5 /* RpcProvider.swift in Sources */,
 				997EDC7721A8905E00263DB8 /* TxInput.swift in Sources */,
@@ -497,6 +528,7 @@
 			files = (
 				997EDC8221A8995200263DB8 /* WalletTests.swift in Sources */,
 				995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */,
+				9994281821A8DECA0038BCA0 /* AddressTests.swift in Sources */,
 				997EDC8021A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift in Sources */,
 				997EDC7E21A8966800263DB8 /* MnemonicTests.swift in Sources */,
 				997EDC8421A8ACC400263DB8 /* TransactionTests.swift in Sources */,

@@ -17,15 +17,17 @@ public struct TXInput {
     
     public let vout: Int32 = 0
     
-    private let signature: Data
+    private var signature: Data
     
     public let pubKey: Data
     
-    public init(txid: Data,signature: Data,pubKey: Data) {
+    public init(txid: Data,pubKey: Data) {
         self.txid = txid
-        self.signature = signature
+        self.signature = Data(hex: "")
         self.pubKey = pubKey
     }
-    
+    public func setSignature(signature: Data){
+        
+    }
 }
 

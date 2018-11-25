@@ -29,18 +29,15 @@ class DappleySwiftTests: XCTestCase {
         let rpc = RpcProvider (host: "127.0.0.1:50051")
         print(rpc.GetBlockchainInfo())
         print(rpc.GetBlockByHeight())
-        
-        /*rpc.GetUtxos(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
+        rpc.GetUtxos(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
         var myInt = 1
         var amount = Data(bytes: &myInt,
                              count: MemoryLayout.size(ofValue: myInt))
         rpc.Send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", to: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", amount: amount)
         //Lis-MacBook-Pro:cli lisong$ ./cli send -from dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW -to dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp -amount 1
-        
         print("the number of blocks: \(rpc.GetBlocks())")
-
         print("get balance: \(rpc.GetBalance(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW"))")
-        */
+ 
         gRPC.shutdown()
         
     }
