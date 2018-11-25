@@ -14,7 +14,14 @@ class PrivateKeyAndPublicKeyTests: XCTestCase {
     
     func testGenerateNewPrivateKey() {
         let pk = KeyUtil.GenerateNewPrivateKey()
+        print(pk)
         XCTAssertEqual(pk.toHexString().lengthOfBytes(using: String.Encoding.ascii),64)
+    }
+    func testGeneratePublicKeyFromPrivateKey(){
+        let privateKeyBytes: [UInt8] = [78,207,244,62,57,211,214,91,250,163,236,160,153,159,221,236,241,39,133,34,130,105,199,114,182,3,221,147,83,44,116,143]
+        let pubKey = HashUtil.GetPublicKey(privateKey: Data(bytes: privateKeyBytes)) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
+        let expect: [UInt8] = [96,240,241,207,204,188,26,9,31,69,160,39,49,48,155,141,198,28,235,182,50,10,153,121,144,187,100,217,149,151,195,243,158,221,32,9,57,80,173,43,78,127,30,171,114,193,226,110,167,54,232,91,248,198,35,124,253,129,56,124,35,5,99,38]
+        XCTAssertEqual(pubKey.bytes, expect)
     }
     func testPrivateKeyAndPublicKey() {
         let privateKey = PrivateKey(raw: Data(hex: "0ac03c260512582a94295185cfa899e0cb8067a89a61b7b5435ec524c088203c"))

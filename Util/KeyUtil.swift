@@ -13,6 +13,7 @@ import secp256k1
 
 public struct KeyUtil {
     public static func GenerateNewPrivateKey() -> Data{
+
         func check(_ vch: [UInt8]) -> Bool {
             let max: [UInt8] = [
                 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
