@@ -38,32 +38,24 @@ class AddressTests: XCTestCase {
         let forthAddress = try! wallet.address(at: 3)
         XCTAssertEqual(forthAddress, "0xCF1D652DAb65ea4f10990FD2D2E59Cd7cbEb315a")
     }
-    /*
-     privKey:  f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b
-     
-     pubKey:    1a63ad06daf0bc01a013a0223e6457d4fdbecb4549c7de0b26d13923c0a9e55bc404940aa002d93182fb84b34e6ba22edfc2ac6b720d34b5ea9bb64e75271c92
-                1a63ad06daf0bc01a013a0223e6457d4fdbecb4549c7de0b26d13923c0a9e55bc404940aa002d93182fb84b34e6ba22edfc2ac6b720d34b5ea9bb64e75271c92
-     pubKey:041a63ad06daf0bc01a013a0223e6457d4fdbecb4549c7de0b26d13923c0a9e55bc404940aa002d93182fb84b34e6ba22edfc2ac6b720d34b5ea9bb64e75271c92
-            041a63ad06daf0bc01a013a0223e6457d4fdbecb4549c7de0b26d13923c0a9e55bc404940aa002d93182fb84b34e6ba22edfc2ac6b720d34b5ea9bb64e75271c92
-              d7238225aa811f4df6ae313560fc81788b3b8725aef3ec62dea888bc1e93a4c9acfa2783f4696157b582e662d0185cdd28bfe45cb5d7e3b543d20ac735815
-     address-user:  dUUJ826xi12tCq4D465xyAFn9kKs7VVsgp
-                    dX3Puv6xKKQn7Sre5yg3taq8oMe6md5F6p
-                    dVU4CqS7SkvMMboshARnShGMt3L1Pj1mbS
-     address-user:  fd7031ead41f045cef507da20715699bcd1a325c
-    */
+
     func testAddressGeneration2() {
         
         let pk = Data(hex: "f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b")
-       // let bint: BInt;
-       // let uList: [UInt8];
-        
-        let pubKey = HashUtil.GetPublicKey(privateKey: pk) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
-        //print(pubKey.toHexString())
+        let pubKey = HashUtil.GetPublicKey(privateKey: pk) 
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         let addr = AddressUtil.CreateAddress(pubKeyHash: pubHash)
-        XCTAssertEqual(addr, "dUUJ826xi12tCq4D465xyAFn9kKs7VVsgp")
+        XCTAssertEqual(addr, "dVU4CqS7SkvMMboshARnShGMt3L1Pj1mbS")
     }
-    
+    //Compare the result to java version
+    func testAddressGeneration3() {
+        
+        let pk = Data(hex: "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a")
+        let pubKey = HashUtil.GetPublicKey(privateKey: pk)
+        let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
+        let addr = AddressUtil.CreateAddress(pubKeyHash: pubHash)
+        XCTAssertEqual(addr, "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa")
+    }
     //Compare the result to go version
     /*
      2018/11/25 11:32:18 [215 35 130 37 170 129 31 77 246 174 49 53 96 252 129 7 8 139 59 135 37 174 243 236 98 222 168 136 188 30 147 164 201 172 250 39 131 244 105 97 87 181 130 230 98 208 24 92 221 40 191 228 92 181 215 227 181 67 13 32 172 115 88 21]
