@@ -26,8 +26,8 @@ public struct TXInput {
         self.signature = Data(hex: "")
         self.pubKey = pubKey
     }
-    public func setSignature(signature: Data){
-        
+    public mutating func setSignature(signature: Data){
+        self.signature = signature
     }
 }
 

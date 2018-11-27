@@ -25,7 +25,7 @@ class PrivateKeyAndPublicKeyTests: XCTestCase {
         print(pubKey.toHexString())
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         print(pubHash.toHexString())
-        let addr = AddressUtil.CreateAddress(pubKeyHash: pubHash)
+        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
         XCTAssertEqual(pubKey.bytes, expect)
     }
