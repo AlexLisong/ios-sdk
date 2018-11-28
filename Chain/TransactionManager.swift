@@ -19,6 +19,7 @@ public class TransactionManager {
         let outputList = buildVout(toAddress: toAddress, amount: amount, totalAmount: totalAmount, publicKey: publicKey)
         
         var transaction = Transaction.init(vin: inputList, vout: outputList, tip: TIP_DEFAULT)
+        transaction.sign(privateKey: privateKey, utxos: utxos)
         return transaction
     }
     private static func buildVin(utxos: [Utxo], publicKey: Data) -> (BInt, [TXInput]){
@@ -45,56 +46,6 @@ public class TransactionManager {
             outputList.append(txOutput)
         }
         return outputList
-    }
-    
-    
-    
-    public static func getPrevUtxos(utxos: [Utxo]) -> Dictionary<String, Utxo>{
-        var utxoMap = Dictionary<String,Utxo>()
-        for u in utxos {
-            utxoMap[u.txid.toHexString() + "-" + String(u.txIndex)] = u
-        }
-        return utxoMap;
-    }
-    
-    public static func sign(transaction: Transaction,privateKey : Data, utxos : [Utxo]) {
-        
-        // format previous transaction data
-        let utxoMap = getPrevUtxos(utxos: utxos)
-        
-        // get a trimedCopy of old transaction
-        let transactionCopy = transaction.trimedCopy();
-        
-        //byte[] privKeyBytes = HashUtil.fromECDSAPrivateKey(privateKey);
-        
-        // calculate sign value
-        buildSignValue(transaction: transaction, utxoMap: utxoMap, transactionCopy: transactionCopy, privKey: privateKey);
-    }
-    
-    
-    private static func buildSignValue(transaction : Transaction,utxoMap : Dictionary<String, Utxo>,transactionCopy : Transaction, privKey: Data) {
-        
-        var txCopyInputs = transactionCopy.vin
-        var txCopyInput = TXInput()
-        var oldPubKey = Data()
-        for (index, ele) in txCopyInputs.enumerated() {
-            txCopyInput = txCopyInputs[index]
-            oldPubKey = txCopyInput.pubKey //txCopyInput.getPubKey();
-            let utxo = utxoMap[txCopyInput.txid.toHexString() + "-"]
-            // temporarily add pubKeyHash to pubKey property
-            txCopyInput.pubKey = (utxo?.publicKeyHash)! //.setPubKey(utxo.getPublicKeyHash());
-            
-            // get deepClone's hash value
-            let txCopyHash = transactionCopy.hash();
-            
-            // recover old pubKey
-            txCopyInput.pubKey = oldPubKey //(oldPubKey);
-            
-            var signature = HashUtil.Secp256k1Sign(hash: txCopyHash, privateKey: privKey);
-            
-            // Update original transaction data with vin's signature.
-            transaction.vin[index].setSignature(signature);
-        }
     }
     
 }

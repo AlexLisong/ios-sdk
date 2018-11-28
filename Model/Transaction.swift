@@ -29,7 +29,57 @@ public struct Transaction {
         self.vout = vout
         self.id = self.hash()
     }
+    public mutating func sign(privateKey : Data, utxos : [Utxo]) {
+        
+        // format previous transaction data
+        let utxoMap = Utxo.getPrevUtxos(utxos: utxos)
+        
+        // get a trimedCopy of old transaction
+        let transactionCopy = self.trimedCopy();
+        
+        //byte[] privKeyBytes = HashUtil.fromECDSAPrivateKey(privateKey);
+        
+        // calculate sign value
+        buildSignValue(utxoMap: utxoMap, transactionCopy: transactionCopy, privKey: privateKey);
+    }
+    internal func toProto() -> Corepb_Transaction{
+        var transaction = Corepb_Transaction()
+        transaction.id = self.id
+        for v in self.vin{
+        transaction.vin.append(v.toProto())
+        }
+        for v in self.vout{
+        transaction.vout.append(v.toProto())
+        }
+        transaction.tip = self.tip
+        return transaction
+    }
+    private mutating func buildSignValue(utxoMap : Dictionary<String, Utxo>,transactionCopy : Transaction, privKey: Data) {
+        
+        var txCopyInputs = transactionCopy.vin
+        var txCopyInput = TXInput()
+        var oldPubKey = Data()
+        for (index, _) in txCopyInputs.enumerated() {
+            txCopyInput = txCopyInputs[index]
+            oldPubKey = txCopyInput.pubKey //txCopyInput.getPubKey();
+            let utxo = utxoMap[txCopyInput.txid.toHexString() + "-"]
+            // temporarily add pubKeyHash to pubKey property
+            txCopyInput.pubKey = (utxo?.publicKeyHash)! //.setPubKey(utxo.getPublicKeyHash());
+            
+            // get deepClone's hash value
+            let txCopyHash = transactionCopy.hash();
+            
+            // recover old pubKey
+            txCopyInput.pubKey = oldPubKey //(oldPubKey);
+            
+            let signature = HashUtil.Secp256k1Sign(hash: txCopyHash, privateKey: privKey);
+            
+            // Update original transaction data with vin's signature.
+            self.vin[index].setSignature(signature: signature!);
+        }
+    }
     
+
     public func serialized() -> Data {
         var data = Data()
         data += vin.flatMap { $0.serialized() }
