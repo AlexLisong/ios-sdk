@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import EthereumKit
 
 public struct Utxo {
-    public let amount: Data
+    public let amount: BInt
     
     public let publicKeyHash: Data
     
@@ -18,7 +19,7 @@ public struct Utxo {
     public let txIndex: UInt32
     
     public init(amount: Data, publicKeyHash: Data, txid: Data, txIndex: UInt32) {
-        self.amount = amount
+        self.amount = DataUtil.Data2BInt(data: amount)!
         self.publicKeyHash = publicKeyHash
         self.txid = txid
         self.txIndex = txIndex

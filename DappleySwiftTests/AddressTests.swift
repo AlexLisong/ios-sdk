@@ -56,6 +56,7 @@ class AddressTests: XCTestCase {
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         var addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa")
+        XCTAssertEqual(pubHash, HashUtil.getPublicKeyHash(address: addr))
         
         addr = AddressUtil.GenerateAddress(privateKey: Data(hex: "4ecff43e39d3d65bfaa3eca0999fddecf12785228269c772b603dd93532c748f"))
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
@@ -91,7 +92,8 @@ class AddressTests: XCTestCase {
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dVaFsQL9He4Xn4CEUh1TCNtfEhHNHKX3hs")
-    }
+        XCTAssertEqual(pubHash, HashUtil.getPublicKeyHash(address: addr))
+   }
     
     //Compare the result to go version
     /*
@@ -108,6 +110,7 @@ class AddressTests: XCTestCase {
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
-        
+        XCTAssertEqual(pubHash, HashUtil.getPublicKeyHash(address: addr))
+
     }
 }

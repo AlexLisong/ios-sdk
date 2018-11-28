@@ -35,7 +35,7 @@ public struct RpcProvider {
     }
 
     public func Send(from: String, to: String, amount: Data) -> String{
-        TransactionManager.newTransaction()
+        //TransactionManager.newTransaction()
         var request = Rpcpb_SendTransactionRequest.init()
         /*request.from = from
         request.to = to
