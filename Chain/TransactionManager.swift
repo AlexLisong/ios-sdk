@@ -27,7 +27,7 @@ public class TransactionManager {
         var totalAmount: BInt = 0
         var inputList: [TXInput] = [TXInput]()
         for u in utxos{
-            txInput = TXInput.init(txid: u.txid, vout: u.txIndex, pubKey: u.publicKeyHash)
+            txInput = TXInput.init(txid: u.txid, vout: u.txIndex, pubKey: publicKey)
             totalAmount += u.amount
             inputList.append(txInput)
         }
