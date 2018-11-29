@@ -15,7 +15,9 @@ public struct DataUtil {
         print(bint)
         return bint
     }
-}
+    public static func BInt2Data(bint: BInt) -> Data?{
+        return Data(bint.description.utf8)
+    }}
 
 
 private extension Data {
