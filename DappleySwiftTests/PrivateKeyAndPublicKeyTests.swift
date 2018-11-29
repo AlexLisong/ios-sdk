@@ -29,12 +29,29 @@ class PrivateKeyAndPublicKeyTests: XCTestCase {
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
         XCTAssertEqual(pubKey.bytes, expect)
     }
+    
+    func testGeneratePublicKeyFromPrivateKey2(){
+        let privateKey = Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15")
+        let pubKey = HashUtil.GetPublicKey(privateKey: privateKey) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
+        let expect: [UInt8] = [134, 175, 112, 63, 81, 220, 137, 127, 184, 52, 126, 106, 116, 208, 56, 141, 169, 85, 229, 234, 134, 142, 8, 116, 152, 54, 30, 152, 62, 227, 171, 28, 8, 177, 94, 5, 138, 236, 67, 26, 246, 192, 227, 227, 237, 37, 244, 142, 210, 102, 145, 22, 81, 74, 9, 170, 42, 221, 207, 83, 107, 84, 115, 106]
+        print(pubKey.toHexString())
+        let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
+        print(pubHash.toHexString())
+        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        XCTAssertEqual(addr, "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
+        XCTAssertEqual(pubKey.bytes, expect)
+    }
+    
+    
+    
     func testPrivateKeyAndPublicKey() {
         let privateKey = PrivateKey(raw: Data(hex: "0ac03c260512582a94295185cfa899e0cb8067a89a61b7b5435ec524c088203c"))
         let publicKey = PublicKey(raw: Data(hex: "047e63dc23f0f6ecb0b2ab8a649f0e2966e9c6ceb10f901e0e0b712cfed2f78449710b2e3e0ce01386f5b1d4533dc21bb1b6d1dfc989884b0e099e3e25ce210e3d"))
         XCTAssertEqual(privateKey.publicKey.raw, publicKey.raw)
         XCTAssertEqual(privateKey.publicKey.address(), publicKey.address())
     }
+    
+    
     
     func testPrivateKeyAndPublicKey2() {
         let privateKey = PrivateKey(raw: Data(hex: "56fa1542efa79a278bf78ba1cf11ef20d961d511d344dc1d4d527bc06eeca667"))
@@ -63,5 +80,11 @@ class PrivateKeyAndPublicKeyTests: XCTestCase {
         XCTAssertEqual(privateKey.publicKey.raw, publicKey.raw)
         XCTAssertEqual(privateKey.publicKey.address(), publicKey.address())
     }
-    
+    /*
+    func testPrivateKeyAndPublicKey6() {
+        let privateKey = PrivateKey(raw: Data(base64Encoded: "6937122208891392941210762868860673784317402549885663464220802150403015568149")!)
+        let publicKey = PublicKey(raw: Data(hex: "047e63dc23f0f6ecb0b2ab8a649f0e2966e9c6ceb10f901e0e0b712cfed2f78449710b2e3e0ce01386f5b1d4533dc21bb1b6d1dfc989884b0e099e3e25ce210e3d"))
+        XCTAssertEqual(privateKey.publicKey.raw, publicKey.raw)
+        XCTAssertEqual(privateKey.publicKey.address(), publicKey.address())
+    }*/
 }
