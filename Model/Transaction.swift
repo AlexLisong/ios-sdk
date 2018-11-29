@@ -8,9 +8,6 @@
 
 import Foundation
 public struct Transaction {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
     
     public var id: Data = Data()
     
@@ -31,15 +28,10 @@ public struct Transaction {
     }
     public mutating func sign(privateKey : Data, utxos : [Utxo]) {
         
-        // format previous transaction data
         let utxoMap = Utxo.getPrevUtxos(utxos: utxos)
         
-        // get a trimedCopy of old transaction
         let transactionCopy = self.trimedCopy();
         
-        //byte[] privKeyBytes = HashUtil.fromECDSAPrivateKey(privateKey);
-        
-        // calculate sign value
         buildSignValue(utxoMap: utxoMap, transactionCopy: transactionCopy, privKey: privateKey);
     }
     internal func toProto() -> Corepb_Transaction{
@@ -61,16 +53,17 @@ public struct Transaction {
         var oldPubKey = Data()
         for (index, _) in txCopyInputs.enumerated() {
             txCopyInput = txCopyInputs[index]
-            oldPubKey = txCopyInput.pubKey //txCopyInput.getPubKey();
-            let utxo = utxoMap[txCopyInput.txid.toHexString() + "-"]
+            oldPubKey = txCopyInput.pubKey
+            let utxo = utxoMap[txCopyInput.txid.toHexString() + "-" + String(txCopyInput.vout)]
+            
             // temporarily add pubKeyHash to pubKey property
-            txCopyInput.pubKey = (utxo?.publicKeyHash)! //.setPubKey(utxo.getPublicKeyHash());
+            txCopyInput.pubKey = (utxo?.publicKeyHash)!
             
             // get deepClone's hash value
             let txCopyHash = transactionCopy.hash();
             
             // recover old pubKey
-            txCopyInput.pubKey = oldPubKey //(oldPubKey);
+            txCopyInput.pubKey = oldPubKey
             
             let signature = HashUtil.Secp256k1Sign(hash: txCopyHash, privateKey: privKey);
             
@@ -98,10 +91,6 @@ public struct Transaction {
         return hash;
     }
     
-    /**
-     * Got a deep clone object of this one.
-     * @return Transaction copied transaction
-     */
     public func deepClone() -> Transaction{
         var transaction = Transaction();
         transaction.id = self.id//.setId(this.id.clone());
@@ -135,10 +124,6 @@ public struct Transaction {
         return transaction;
     }
     
-    /**
-     * trimedCopy creates a trimmed deepClone of Transaction to be used in signing
-     * @return Transaction new transaction
-     */
     public func trimedCopy() -> Transaction{
         var newTransaction = self.deepClone();
         for (index, _) in newTransaction.vin.enumerated(){

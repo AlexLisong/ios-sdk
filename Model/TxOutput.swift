@@ -9,16 +9,20 @@
 import Foundation
 import EthereumKit
 public struct TXOutput {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-    
+
     public var value: BInt = 0
     
     public var pubKeyHash: Data = Data()
     
     public var contract: String = String()
     public init() {
+    }
+    internal func toProto() -> Corepb_TXOutput{
+        var output = Corepb_TXOutput()
+        output.value = Data(withUnsafeBytes(of: self.value) { Data($0) })
+        output.pubKeyHash = self.pubKeyHash
+        output.contract = self.contract
+        return output
     }
     public init(value: BInt, pubKeyHash: Data, contract: String) {
         self.value = value
@@ -27,9 +31,9 @@ public struct TXOutput {
     }
     public func serialized() -> Data {
         var data = Data()
-        data += Data(withUnsafeBytes(of: value) { Data($0) })
-        data += pubKeyHash
-        data += Data(hex: contract.toHexString())
+        data += Data(withUnsafeBytes(of: self.value) { Data($0) })
+        data += self.pubKeyHash
+        data += Data(hex: self.contract.toHexString())
         return data
     }
     
