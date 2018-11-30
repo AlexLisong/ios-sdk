@@ -11,8 +11,5 @@ import EthereumKit
 
 public class UtxoManager {
 
-    public static func getSpendableUtxos(utxos: [Utxo], amount: BInt)
-    {
-        
-    }
+
 }
