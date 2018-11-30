@@ -14,9 +14,17 @@ import secp256k1
 
 class DataTests: XCTestCase {
     func testDataAndBInt() {
-        let bint = BInt(2)
+        var bint = BInt(17)
         let data = DataUtil.BInt2Data(bint: bint)
-        let int = DataUtil.Data2BInt(data: data!)!
+        let int = DataUtil.Data2BInt(data: Data(bytes: [1, 109, 139, 74, 212, 0]))!
+        print(int)
+        print(DataUtil.toByteArray(value: 1))
+        let int2: Int = 1570000000000
+        print(try! (RLP.encode(int2).bytes))
+        //bint = BInt()
+        bint = BInt(1570)
+        print(bint)
         print(int)
     }
+    
 }
