@@ -28,7 +28,7 @@ public struct HashUtil {
     }
     public static func getPublicKeyHash(publicKey: Data) -> Data{
         let sha = publicKey.bytes.sha3(.sha256)
-        return CryptoHash.ripemd160(Data(bytes: sha))
+        return Data(bytes: CryptoHash.ripemd160(Data(bytes: sha)).bytes)
     }
     public static func getPublicKeyHash(address: String) -> Data{
         var fullPubHash = DaBase58.decode(address)!
