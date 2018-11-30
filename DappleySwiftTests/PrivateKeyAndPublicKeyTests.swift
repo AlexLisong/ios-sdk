@@ -8,36 +8,76 @@
 
 import XCTest
 import EthereumKit
+import Base58String
+
+//func test() {
+//
+//    let data = Data([222, 100, 50])
+//    print("Data: \(Array(data))")
+//
+//    let encoded = String(base58Encoding: data)
+//    print("Encoded string: \(encoded)")
+//
+//    let decoded = Data(base58Decoding: encoded)!
+//    print("Decoded data: \(Array(decoded))")
+//
+//}
 @testable import DappleySwift
 
 class PrivateKeyAndPublicKeyTests: XCTestCase {
     
     func testGenerateNewPrivateKey() {
-        let pk = KeyUtil.GenerateNewPrivateKey()
+        let pk = KeyUtil.generateNewPrivateKey()
         print(pk)
         XCTAssertEqual(pk.toHexString().lengthOfBytes(using: String.Encoding.ascii),64)
     }
+    func testGetPubKeyHashFromPublicKey(){
+        
+            let data = Data([222, 100, 50])
+            print("Data: \(Array(data))")
+        
+            let encoded = String(base58Encoding: data)
+            print("Encoded string: \(encoded)")
+        
+            let decoded = Data(base58Decoding: encoded)!
+            print("Decoded data: \(Array(decoded))")
+        
+        var pubHash = HashUtil.getPublicKeyHash(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
+        
+                print(pubHash.toHexString())
+        print(pubHash.bytes)
+        //INFO[2936] vout{false [3]}-->[90 91 50 169 181 210 191 66 118 60 29 19 221 112 254 44 203 19 123 100 40]
+   //     INFO[2936] vout{false [129]}-->[90 21 208 12 55 114 238 144 115 134 186 153 185 229 142 57 32 199 93 93 57]
+        var pubHashExpected = Data(bytes: [90, 21, 208 ,12 ,55, 114, 238, 144, 115, 134 ,186, 153, 185, 229, 142, 57, 32, 199, 93, 93, 57])
+        XCTAssertEqual(pubHash.bytes, pubHashExpected.bytes)
+
+        print(pubHash.bytes)
+        pubHash = HashUtil.getPublicKeyHash(address: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp")
+        print(pubHash.toHexString())
+        pubHashExpected = Data(bytes: [90, 91, 50, 169, 181, 210, 191, 66, 118, 60, 29, 19, 221, 112, 254, 44, 203, 19, 123, 100, 40])
+        XCTAssertEqual(pubHash.bytes, pubHashExpected.bytes)
+   }
     func testGeneratePublicKeyFromPrivateKey(){
         let privateKeyBytes: [UInt8] = [78,207,244,62,57,211,214,91,250,163,236,160,153,159,221,236,241,39,133,34,130,105,199,114,182,3,221,147,83,44,116,143]
         print(privateKeyBytes.toHexString())
-        let pubKey = HashUtil.GetPublicKey(privateKey: Data(bytes: privateKeyBytes)) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
+        let pubKey = HashUtil.getPublicKey(privateKey: Data(bytes: privateKeyBytes)) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
         let expect: [UInt8] = [96,240,241,207,204,188,26,9,31,69,160,39,49,48,155,141,198,28,235,182,50,10,153,121,144,187,100,217,149,151,195,243,158,221,32,9,57,80,173,43,78,127,30,171,114,193,226,110,167,54,232,91,248,198,35,124,253,129,56,124,35,5,99,38]
         print(pubKey.toHexString())
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         print(pubHash.toHexString())
-        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        let addr = AddressUtil.generateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
         XCTAssertEqual(pubKey.bytes, expect)
     }
     
     func testGeneratePublicKeyFromPrivateKey2(){
         let privateKey = Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15")
-        let pubKey = HashUtil.GetPublicKey(privateKey: privateKey) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
+        let pubKey = HashUtil.getPublicKey(privateKey: privateKey) //Secp256k1.generatePublicKey(withPrivateKey: pk, compression: false).dropFirst()
         let expect: [UInt8] = [134, 175, 112, 63, 81, 220, 137, 127, 184, 52, 126, 106, 116, 208, 56, 141, 169, 85, 229, 234, 134, 142, 8, 116, 152, 54, 30, 152, 62, 227, 171, 28, 8, 177, 94, 5, 138, 236, 67, 26, 246, 192, 227, 227, 237, 37, 244, 142, 210, 102, 145, 22, 81, 74, 9, 170, 42, 221, 207, 83, 107, 84, 115, 106]
         print(pubKey.toHexString())
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
         print(pubHash.toHexString())
-        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        let addr = AddressUtil.generateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
         XCTAssertEqual(pubKey.bytes, expect)
     }

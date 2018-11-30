@@ -13,7 +13,7 @@ public class TransactionManager {
     private static let TIP_DEFAULT: UInt64 = 1
     
     public static func newTransaction(utxos: [Utxo], toAddress: String, amount: BInt, privateKey: Data) -> Transaction{
-        let publicKey = HashUtil.GetPublicKey(privateKey: privateKey)
+        let publicKey = HashUtil.getPublicKey(privateKey: privateKey)
         var (totalAmount, inputList) = buildVin(utxos: utxos, publicKey: publicKey)
         let tip = TIP_DEFAULT
         totalAmount = totalAmount - BInt(tip)

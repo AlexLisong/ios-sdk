@@ -42,9 +42,9 @@ class AddressTests: XCTestCase {
     func testAddressGeneration2() {
         
         let pk = Data(hex: "f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b")
-        let pubKey = HashUtil.GetPublicKey(privateKey: pk) 
+        let pubKey = HashUtil.getPublicKey(privateKey: pk) 
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
-        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        let addr = AddressUtil.generateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dVU4CqS7SkvMMboshARnShGMt3L1Pj1mbS")
     }
     
@@ -52,19 +52,19 @@ class AddressTests: XCTestCase {
     func testAddressGeneration3() {
         
         let pk = Data(hex: "300c0338c4b0d49edc66113e3584e04c6b907f9ded711d396d522aae6a79be1a")
-        let pubKey = HashUtil.GetPublicKey(privateKey: pk)
+        let pubKey = HashUtil.getPublicKey(privateKey: pk)
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
-        var addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        var addr = AddressUtil.generateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dastXXWLe5pxbRYFhcyUq8T3wb5srWkHKa")
         XCTAssertEqual(pubHash, HashUtil.getPublicKeyHash(address: addr))
         
-        addr = AddressUtil.GenerateAddress(privateKey: Data(hex: "4ecff43e39d3d65bfaa3eca0999fddecf12785228269c772b603dd93532c748f"))
+        addr = AddressUtil.generateAddress(privateKey: Data(hex: "4ecff43e39d3d65bfaa3eca0999fddecf12785228269c772b603dd93532c748f"))
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
         
-        addr = AddressUtil.GenerateAddress(privateKey: Data(hex: "f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b"))
+        addr = AddressUtil.generateAddress(privateKey: Data(hex: "f00fbae3a1ecd3de06be15cc455443fcf275008a04c1f69689a2f670f6f49c5b"))
         XCTAssertEqual(addr, "dVU4CqS7SkvMMboshARnShGMt3L1Pj1mbS")
         
-        addr = AddressUtil.GenerateAddress(privateKey: Data(hex: "accfeef16d9ac928d93b28c059dee85a256c75af6248c1d2e6a39a14c4957a55"))
+        addr = AddressUtil.generateAddress(privateKey: Data(hex: "accfeef16d9ac928d93b28c059dee85a256c75af6248c1d2e6a39a14c4957a55"))
         XCTAssertEqual(addr, "dVUXs8hLzi5iSRYabMUq2AiNY8uHjYTmrG")
         /*
          4ecff43e39d3d65bfaa3eca0999fddecf12785228269c772b603dd93532c748f
@@ -90,7 +90,7 @@ class AddressTests: XCTestCase {
         let input : [UInt8] = [0xd7, 0x23, 0x82, 0x25, 0xaa, 0x81, 0x1f, 0x4d, 0xf6, 0xae, 0x31, 0x35, 0x60, 0xfc, 0x81, 0x7, 0x8, 0x8b, 0x3b, 0x87, 0x25, 0xae, 0xf3, 0xec, 0x62, 0xde, 0xa8, 0x88, 0xbc, 0x1e, 0x93, 0xa4, 0xc9, 0xac, 0xfa, 0x27, 0x83, 0xf4, 0x69, 0x61, 0x57, 0xb5, 0x82, 0xe6, 0x62, 0xd0, 0x18, 0x5c, 0xdd, 0x28, 0xbf, 0xe4, 0x5c, 0xb5, 0xd7, 0xe3, 0xb5, 0x43, 0xd, 0x20, 0xac, 0x73, 0x58, 0x15]
         let pubKey = Data(bytes: input)
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
-        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        let addr = AddressUtil.generateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dVaFsQL9He4Xn4CEUh1TCNtfEhHNHKX3hs")
         XCTAssertEqual(pubHash, HashUtil.getPublicKeyHash(address: addr))
    }
@@ -108,7 +108,7 @@ class AddressTests: XCTestCase {
         let input : [UInt8] = [96,240,241,207,204,188,26,9,31,69,160,39,49,48,155,141,198,28,235,182,50,10,153,121,144,187,100,217,149,151,195,243,158,221,32,9,57,80,173,43,78,127,30,171,114,193,226,110,167,54,232,91,248,198,35,124,253,129,56,124,35,5,99,38]
         let pubKey = Data(bytes: input)
         let pubHash = HashUtil.getPublicKeyHash(publicKey: pubKey)
-        let addr = AddressUtil.GenerateAddressFromPublickeyHash(pubKeyHash: pubHash)
+        let addr = AddressUtil.generateAddressFromPublickeyHash(pubKeyHash: pubHash)
         XCTAssertEqual(addr, "dU5ErX1uP5QYq5ENZUgJGMjDkR4VbS6LDC")
         XCTAssertEqual(pubHash, HashUtil.getPublicKeyHash(address: addr))
 

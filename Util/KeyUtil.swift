@@ -12,7 +12,7 @@ import CryptoEthereumSwift
 import secp256k1
 
 public struct KeyUtil {
-    public static func GenerateNewPrivateKey() -> Data{
+    public static func generateNewPrivateKey() -> Data{
 
         func check(_ vch: [UInt8]) -> Bool {
             let max: [UInt8] = [

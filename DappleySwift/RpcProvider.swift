@@ -34,21 +34,10 @@ public struct RpcProvider {
         self.adminClient =  Rpcpb_AdminServiceServiceClient.init(channel: self.channel)
     }
 
-    public func Send(from: String, to: String, amount: BInt, privateKey: Data) -> String{
-        //TransactionManager.newTransaction()
+    public func send(from: String, to: String, amount: BInt, privateKey: Data) -> String{
         var request = Rpcpb_SendTransactionRequest.init()
-        /*request.from = from
-        request.to = to
-        request.amount = amount*/
         
-        /*
-        BigInteger totalAmount = buildVin(transaction, utxos, ecKeyPair);
-        
-        // add vout list. If there is change is this transaction, vout list wound have two elements, or have just one to coin receiver.
-        buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair);
-*/
-        
-        request.transaction = TransactionManager.newTransaction(utxos: GetUtxos(address: from), toAddress: to, amount: amount, privateKey: privateKey).toProto()
+        request.transaction = TransactionManager.newTransaction(utxos: getUtxos(address: from), toAddress: to, amount: amount, privateKey: privateKey).toProto()
         print("request: \(request.transaction.textFormatString())")
         print("request: \(try? request.transaction.jsonString())")
 
@@ -59,15 +48,13 @@ public struct RpcProvider {
         return response?.textFormatString() ?? ""
         
     }
-    public func GetUtxos(address: String) -> [Utxo]{
+    public func getUtxos(address: String) -> [Utxo]{
         
         var request = Rpcpb_GetUTXORequest.init()
         request.address = address
         
         let response = try? self.serviceClient.rpcGetUTXO(request)
-        // print(response?.blocks[0].header.hash)
         var utxoList = [Utxo]()
-        print("getutxo: \(response?.errorCode)")
         for u in response!.utxos{
             utxoList.append(Utxo(amount: u.amount,publicKeyHash: u.publicKeyHash,txid: u.txid,txIndex: Int32(u.txIndex)))
         }
@@ -76,37 +63,29 @@ public struct RpcProvider {
         }
         return utxoList
     }
-    public func GetBlocks() -> Int{
+    public func getBlocks() -> Int{
         var request = Rpcpb_GetBlocksRequest.init()
         request.maxCount = 20
-        
         let response = try? self.serviceClient.rpcGetBlocks(request)
-       // print(response?.blocks[0].header.hash)
-
-        print(response?.blocks[0].header.hash)
-        print(response?.blocks[0].header.timestamp)
-        print(response?.blocks[0].transactions[0].vout[0].value)
-
         return response?.blocks.count ?? 0
     }
     
-    public func GetBalance(address: String) -> Int64{
+    public func getBalance(address: String) -> Int64{
         var request = Rpcpb_GetBalanceRequest.init()
         request.address = address
         request.name = "getBalance"
         let response = try? serviceClient.rpcGetBalance(request)
-        print(response?.message)
         return response?.amount ?? -1
     }
     
-    public func GetBlockByHeight() -> Int{
+    public func getBlockByHeight() -> Int{
         var request = Rpcpb_GetBlockByHeightRequest()
         request.height = 1
         let response = try? serviceClient.rpcGetBlockByHeight(request)
         return (response?.block.hashValue)!
     }
     
-    public func GetBlockchainInfo() -> UInt64{
+    public func getBlockchainInfo() -> UInt64{
         let request = Rpcpb_GetBlockchainInfoRequest.init()
         let response = try? serviceClient.rpcGetBlockchainInfo(request)
         return response?.blockHeight ?? 0

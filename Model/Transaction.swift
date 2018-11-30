@@ -61,23 +61,15 @@ public struct Transaction {
             txCopyInput = txCopyInputs[index]
             oldPubKey = txCopyInput.pubKey
             let utxo = utxoMap[txCopyInput.txid.toHexString() + "-" + String(txCopyInput.vout)]
-            print("key key\(txCopyInput.txid.toHexString() + "-" + String(txCopyInput.vout))")
-            print("utxo \(utxo?.txid)")
-            print("vin id: \(tranCopy.vin[index].txid.bytes)")
-            // temporarily add pubKeyHash to pubKey property
-            //txCopyInput.pubKey = (utxo?.publicKeyHash)!
-            
+
             tranCopy.vin[index].pubKey = (utxo?.publicKeyHash)!
-            //print("new pub: \(txCopyInput.pubKey.bytes)")
             // get deepClone's hash value
             let txCopyHash = tranCopy.hash()
             print("copy hash: \(tranCopy.hash())")
             // recover old pubKey
-            //txCopyInput.pubKey = oldPubKey
             tranCopy.vin[index].pubKey = oldPubKey
 
-            let signature = HashUtil.Secp256k1Sign(hash: txCopyHash, privateKey: privKey)
-            print("pr: \(privKey.bytes)signature: \(signature?.bytes)")
+            let signature = HashUtil.secp256k1Sign(hash: txCopyHash, privateKey: privKey)
             // Update original transaction data with vin's signature.
             self.vin[index].setSignature(signature: signature!)
         }
@@ -90,41 +82,19 @@ public struct Transaction {
         print("data: -- vin\(data.bytes)")
         data += vout.flatMap { $0.serialized() }
         print("data: -- vout\(data.bytes)")
-        data += Data(bytes: DataUtil.UInt64toByteArray(value: tip))
+        data += Data(bytes: DataUtil.uInt64toByteArray(value: tip))
         print("data: -- vdata\(data.bytes)")
         return data
     }
-    /*
-    for _, vin := range tx.Vin {
-    bytes = append(bytes, vin.Txid...)
-    // int size may differ from differnt platform
-    bytes = append(bytes, byteutils.FromInt32(int32(vin.Vout))...)
-    bytes = append(bytes, vin.PubKey...)
-    bytes = append(bytes, vin.Signature...)
-    }
-    
-    for _, vout := range tx.Vout {
-    bytes = append(bytes, vout.Value.Bytes()...)
-    bytes = append(bytes, vout.PubKeyHash.GetPubKeyHash()...)
-    }
-    
-    bytes = append(bytes, byteutils.FromUint64(tx.Tip)...)
-    
-    */
-    
+   
     public func hash() -> Data{
-        //let oldId = self.id
-        // clear id property
-        //self.id = Data()
-        // get sha256 hash
         let hash = serialized().sha256();
-        //self.id = oldId
         return hash;
     }
     
     public func deepClone() -> Transaction{
         var transaction = Transaction();
-        transaction.id = self.id//.setId(this.id.clone());
+        transaction.id = self.id
         
         // deep clone list datas
         if (self.vin.count > 0) {

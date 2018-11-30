@@ -33,7 +33,7 @@ class TransactionTests: XCTestCase {
         print("msg: \(msg.toHexString())")
         //let util = HashUtil()
         
-        XCTAssertEqual(HashUtil.Secp256k1Sign(hash: msg, privateKey: pk)!.toHexString(), "cd7c36f9cf69feb13f75859382fcdc2ac6c97d9c13dbbe42dc4ceb7eb29f454b101528db47edb53ce7cffc99f251e47ecfa689fc6730de7aae7ba540e64d672f01")
+        XCTAssertEqual(HashUtil.secp256k1Sign(hash: msg, privateKey: pk)!.toHexString(), "cd7c36f9cf69feb13f75859382fcdc2ac6c97d9c13dbbe42dc4ceb7eb29f454b101528db47edb53ce7cffc99f251e47ecfa689fc6730de7aae7ba540e64d672f01")
     }
     func testPerformanceExample() {
         // This is an example of a performance test case.

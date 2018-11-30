@@ -18,7 +18,7 @@ public struct Utxo {
     public let txIndex: Int32
     
     public init(amount: Data, publicKeyHash: Data, txid: Data, txIndex: Int32) {
-        self.amount = BInt(DataUtil.Data2BInt(data: amount)!)
+        self.amount = BInt(DataUtil.data2BInt(data: amount)!)
         self.publicKeyHash = publicKeyHash
         self.txid = txid
         self.txIndex = txIndex

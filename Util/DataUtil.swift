@@ -10,20 +10,15 @@ import Foundation
 import EthereumKit
 
 public struct DataUtil {
-    public static func Data2BInt(data: Data) -> BInt?{
+    public static func data2BInt(data: Data) -> BInt?{
         //BInt(<#T##nStr: String##String#>, radix: data)
         print("datahex: \(data.toHexString())")
         let bint = fromHexStringToBInt(nStr: data.toHexString(),radix: 16)! //try! RLP.encode(BInt(nStr: data.toHexString(), radix: 16)!)
         print("bint: \(bint)")
         return bint
     }
-    public static func BInt2Data(bint: BInt) -> Data?{
+    public static func bint2Data(bint: BInt) -> Data?{
         
-       // try! RLP.encode(BInt("12371637000000000000")!).toHexString(),
-       // "88abb0e24dc3145000"
-        //let int32 = try! (RLP.encode(bint).toInt32())
-        //let bytes = toByteArray(int32).map{String($0)}.joined(separator: ",")
-        //let string = "[" + bytes + "]"
         var byteArray = try! (RLP.encode(bint).bytes)
         if (byteArray.count > 1){
             byteArray.removeFirst()
@@ -34,28 +29,24 @@ public struct DataUtil {
         if(value == 0){
             return [0,0,0,0]
         }
-        var arr = (BInt2Data(bint: BInt(value))?.bytes)!
+        var arr = (bint2Data(bint: BInt(value))?.bytes)!
         while (arr.count < 4){
             arr = [0] + arr
         }
         return arr
     }
-    public static func UInt64toByteArray(value: UInt64) -> [UInt8] {
+    public static func uInt64toByteArray(value: UInt64) -> [UInt8] {
         if(value == 0){
             return [0,0,0,0,0,0,0,0]
         }
-        var arr = (BInt2Data(bint: BInt(value))?.bytes)!
+        var arr = (bint2Data(bint: BInt(value))?.bytes)!
         while (arr.count < 8){
             arr = [0] + arr
         }
         return arr
         
     }
-//    public static func toByteArray<T>(_ value: T) -> [UInt8] {
-//        var value = value
-//        var ret = withUnsafeBytes(of: &value) { Array($0) }
-//        return ret
-//    }
+
     
     public static func fromByteArray<T>(_ value: [UInt8], _: T.Type) -> T {
         return value.withUnsafeBytes {
@@ -143,25 +134,3 @@ extension Data {
     }
     
 }
-
-//extension Data {
-//    public init?(hex: String) {
-//        let len = hex.count / 2
-//        var data = Data(capacity: len)
-//        for i in 0..<len {
-//            let j = hex.index(hex.startIndex, offsetBy: i * 2)
-//            let k = hex.index(j, offsetBy: 2)
-//            let bytes = hex[j..<k]
-//            if var num = UInt8(bytes, radix: 16) {
-//                data.append(&num, count: 1)
-//            } else {
-//                return nil
-//            }
-//        }
-//        self = data
-//    }
-//    
-//    public var hex: String {
-//        return reduce("") { $0 + String(format: "%02x", $1) }
-//    }
-//}

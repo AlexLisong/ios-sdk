@@ -26,15 +26,15 @@ class DappleySwiftTests: XCTestCase {
     
     func testGPRC() {
         gRPC.initialize()
-        let rpc = RpcProvider (host: "127.0.0.1:50051")
-        print(rpc.GetBlockchainInfo())
-        print(rpc.GetBlockByHeight())
-        rpc.GetUtxos(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
+        let rpc = RpcProvider (host: "127.0.0.1:50050")
+        print(rpc.getBlockchainInfo())
+        print(rpc.getBlockByHeight())
+        rpc.getUtxos(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW")
         var amount:BInt = 3
-        rpc.Send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", to: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", amount: amount, privateKey: Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15"))
+        rpc.send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", to: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", amount: amount, privateKey: Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15"))
         //Lis-MacBook-Pro:cli lisong$ ./cli send -from dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW -to dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp -amount 1
-        print("the number of blocks: \(rpc.GetBlocks())")
-        print("get balance: \(rpc.GetBalance(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW"))")
+        print("the number of blocks: \(rpc.getBlocks())")
+        print("get balance: \(rpc.getBalance(address: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW"))")
  
         gRPC.shutdown()
         
