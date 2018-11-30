@@ -6,6 +6,7 @@ target 'DappleySwift' do
   use_frameworks!
   pod 'SwiftGRPC'
   pod 'SwiftProtobuf', '~> 1.0'
+  pod 'BigInt', '~> 3.1'
 
   # Pods for DappleySwift
 
