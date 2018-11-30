@@ -8,7 +8,6 @@
 
 import Foundation
 import EthereumKit
-
 public struct Utxo {
     public let amount: BInt
     
@@ -19,7 +18,7 @@ public struct Utxo {
     public let txIndex: Int32
     
     public init(amount: Data, publicKeyHash: Data, txid: Data, txIndex: Int32) {
-        self.amount = DataUtil.Data2BInt(data: amount)!
+        self.amount = BInt(DataUtil.Data2BInt(data: amount)!)
         self.publicKeyHash = publicKeyHash
         self.txid = txid
         self.txIndex = txIndex
@@ -29,6 +28,9 @@ public struct Utxo {
         var utxoMap = Dictionary<String,Utxo>()
         for u in utxos {
             utxoMap[u.txid.toHexString() + "-" + String(u.txIndex)] = u
+            
+            print("prev utxo\(u.txid.toHexString() + "-" + String(u.txIndex)))")
+            print("utxo \(u.txid)")
         }
         return utxoMap;
     }
