@@ -12,7 +12,6 @@ import SwiftGRPC
 import CryptoSwift
 import CryptoEthereumSwift
 import EthereumKit
-import BigInt
 public struct RpcProvider {
     public let host: String
     public let secure: Bool
@@ -35,7 +34,7 @@ public struct RpcProvider {
         self.adminClient =  Rpcpb_AdminServiceServiceClient.init(channel: self.channel)
     }
 
-    public func Send(from: String, to: String, amount: BigInt, privateKey: Data) -> String{
+    public func Send(from: String, to: String, amount: BInt, privateKey: Data) -> String{
         //TransactionManager.newTransaction()
         var request = Rpcpb_SendTransactionRequest.init()
         /*request.from = from
@@ -49,7 +48,7 @@ public struct RpcProvider {
         buildVout(transaction, toAddress, amount, totalAmount, ecKeyPair);
 */
         
-        request.transaction = TransactionManager.newTransaction(utxos: GetUtxos(address: from), toAddress: to, amount: BInt(amount), privateKey: privateKey).toProto()
+        request.transaction = TransactionManager.newTransaction(utxos: GetUtxos(address: from), toAddress: to, amount: amount, privateKey: privateKey).toProto()
         print("request: \(request.transaction.textFormatString())")
         print("request: \(try? request.transaction.jsonString())")
 
