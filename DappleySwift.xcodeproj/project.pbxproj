@@ -54,6 +54,8 @@
 		997EDC8021A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EDC7F21A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift */; };
 		997EDC8221A8995200263DB8 /* WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EDC8121A8995200263DB8 /* WalletTests.swift */; };
 		997EDC8421A8ACC400263DB8 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997EDC8321A8ACC400263DB8 /* TransactionTests.swift */; };
+		9981363121AF947000FBD6A5 /* BigIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981363021AF947000FBD6A5 /* BigIntTests.swift */; };
+		9981363321AF9B0600FBD6A5 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9981363221AF9B0600FBD6A5 /* DataTests.swift */; };
 		9994281021A8D68F0038BCA0 /* UtxoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994280F21A8D68F0038BCA0 /* UtxoManager.swift */; };
 		9994281421A8D9CF0038BCA0 /* KeyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281321A8D9CF0038BCA0 /* KeyUtil.swift */; };
 		9994281621A8DD4F0038BCA0 /* AddressUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281521A8DD4F0038BCA0 /* AddressUtil.swift */; };
@@ -121,6 +123,8 @@
 		997EDC7F21A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyAndPublicKeyTests.swift; sourceTree = "<group>"; };
 		997EDC8121A8995200263DB8 /* WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTests.swift; sourceTree = "<group>"; };
 		997EDC8321A8ACC400263DB8 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
+		9981363021AF947000FBD6A5 /* BigIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigIntTests.swift; sourceTree = "<group>"; };
+		9981363221AF9B0600FBD6A5 /* DataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		9994280F21A8D68F0038BCA0 /* UtxoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoManager.swift; sourceTree = "<group>"; };
 		9994281321A8D9CF0038BCA0 /* KeyUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyUtil.swift; sourceTree = "<group>"; };
 		9994281521A8DD4F0038BCA0 /* AddressUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressUtil.swift; sourceTree = "<group>"; };
@@ -202,12 +206,14 @@
 			isa = PBXGroup;
 			children = (
 				995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */,
+				9981363221AF9B0600FBD6A5 /* DataTests.swift */,
 				995C11A1218D185F0072FFF5 /* Info.plist */,
 				997EDC7D21A8966800263DB8 /* MnemonicTests.swift */,
 				997EDC7F21A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift */,
 				997EDC8121A8995200263DB8 /* WalletTests.swift */,
 				997EDC8321A8ACC400263DB8 /* TransactionTests.swift */,
 				9994281721A8DECA0038BCA0 /* AddressTests.swift */,
+				9981363021AF947000FBD6A5 /* BigIntTests.swift */,
 			);
 			path = DappleySwiftTests;
 			sourceTree = "<group>";
@@ -418,7 +424,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -428,7 +436,9 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -539,8 +549,10 @@
 				995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */,
 				9994281821A8DECA0038BCA0 /* AddressTests.swift in Sources */,
 				997EDC8021A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift in Sources */,
+				9981363121AF947000FBD6A5 /* BigIntTests.swift in Sources */,
 				9994281A21ADCA570038BCA0 /* DataUtil.swift in Sources */,
 				997EDC7E21A8966800263DB8 /* MnemonicTests.swift in Sources */,
+				9981363321AF9B0600FBD6A5 /* DataTests.swift in Sources */,
 				997EDC8421A8ACC400263DB8 /* TransactionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
