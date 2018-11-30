@@ -11,6 +11,8 @@ import CryptoSwift
 import CryptoEthereumSwift
 import secp256k1
 import EthereumKit
+import Base58String
+
 extension StringProtocol {
     var hexa2Bytes: [UInt8] {
         let hexa = Array(self)
@@ -19,26 +21,20 @@ extension StringProtocol {
 }
 
 public struct HashUtil {
-    public static func Secp256k1Sign(hash: Data, privateKey: Data) -> Data?{
+    public static func secp256k1Sign(hash: Data, privateKey: Data) -> Data?{
         let signature = try? CryptoEthereumSwift.Crypto.sign(hash, privateKey:  privateKey)
         return signature
     }
-    public static func GetPublicKey(privateKey: Data) ->Data{
+    public static func getPublicKey(privateKey: Data) ->Data{
         return Secp256k1.generatePublicKey(withPrivateKey: privateKey, compression: false).dropFirst()
     }
     public static func getPublicKeyHash(publicKey: Data) -> Data{
+        print(publicKey.bytes)
         let sha = publicKey.bytes.sha3(.sha256)
-        return Data(bytes: CryptoHash.ripemd160(Data(bytes: sha)).bytes)
+        print(sha.toHexString())
+        return Data(bytes: [0x5A] + CryptoHash.ripemd160(Data(bytes: sha)).bytes)
     }
     public static func getPublicKeyHash(address: String) -> Data{
-        var fullPubHash = DaBase58.decode(address)!
-        return fullPubHash.dropLast(4).dropFirst()
-        /*
-        let fullPubHash: Data = Data(bytes: [0x5A] + pubKeyHash.bytes)
-        print(fullPubHash.bytes)
-        let checksum = CryptoHash.sha256(CryptoHash.sha256(fullPubHash)).bytes
-        print("checksum: \(checksum)")
-        print(checksum.prefix(4))
-        print((fullPubHash + checksum.prefix(4)).bytes)
-        return Base58.encode(fullPubHash + checksum.prefix(4))*/
+        let fullPubHash = Data(base58Decoding: address)!
+        return fullPubHash.dropLast(4)
     }}
