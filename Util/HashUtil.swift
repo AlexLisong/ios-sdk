@@ -21,6 +21,9 @@ extension StringProtocol {
 }
 
 public struct HashUtil {
+    static let versionUser:[UInt8] = [0x5A]
+    static let versionContract:[UInt8] = [0x58]
+
     public static func secp256k1Sign(hash: Data, privateKey: Data) -> Data?{
         let signature = try? CryptoEthereumSwift.Crypto.sign(hash, privateKey:  privateKey)
         return signature
@@ -28,13 +31,10 @@ public struct HashUtil {
     public static func getPublicKey(privateKey: Data) ->Data{
         return Secp256k1.generatePublicKey(withPrivateKey: privateKey, compression: false).dropFirst()
     }
-    public static func getPublicKeyHash(publicKey: Data) -> Data{
-        print(publicKey.bytes)
+    public static func getPublicKeyHash(publicKey: Data, isUserAddress: Bool=true) -> Data{
         let sha = publicKey.bytes.sha3(.sha256)
         print(sha.toHexString())
-        return Data(bytes: [0x5A] + CryptoHash.ripemd160(Data(bytes: sha)).bytes)
+        return Data(bytes: (isUserAddress ? versionUser : versionContract) + CryptoHash.ripemd160(Data(bytes: sha)).bytes)
     }
-    public static func getPublicKeyHash(address: String) -> Data{
-        let fullPubHash = Data(base58Decoding: address)!
-        return fullPubHash.dropLast(4)
-    }}
+
+}

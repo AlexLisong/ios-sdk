@@ -59,6 +59,7 @@
 		9994281A21ADCA570038BCA0 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281921ADCA570038BCA0 /* DataUtil.swift */; };
 		9994281B21ADDF390038BCA0 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281921ADCA570038BCA0 /* DataUtil.swift */; };
 		9994281D21ADE4010038BCA0 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994281C21ADE4010038BCA0 /* Encoding.swift */; };
+		99C11F7621B5C6A70024DF4A /* HashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C11F7521B5C6A70024DF4A /* HashTests.swift */; };
 		99C4060321983A99002A7439 /* SwiftProtobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060221983A99002A7439 /* SwiftProtobuf.framework */; };
 		99C4060521983A9E002A7439 /* SwiftGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C4060421983A9E002A7439 /* SwiftGRPC.framework */; };
 		E66FFF4EAFE002EF79DA37C2 /* Pods_DappleySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06EFBDAE9D87D3493C48310 /* Pods_DappleySwift.framework */; };
@@ -123,6 +124,7 @@
 		9994281721A8DECA0038BCA0 /* AddressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTests.swift; sourceTree = "<group>"; };
 		9994281921ADCA570038BCA0 /* DataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtil.swift; sourceTree = "<group>"; };
 		9994281C21ADE4010038BCA0 /* Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
+		99C11F7521B5C6A70024DF4A /* HashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTests.swift; sourceTree = "<group>"; };
 		99C4060221983A99002A7439 /* SwiftProtobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftProtobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C4060421983A9E002A7439 /* SwiftGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99DD696CDDF940394F8C1013 /* Pods_DappleySwift_DappleySwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DappleySwift_DappleySwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 				997EDC8121A8995200263DB8 /* WalletTests.swift */,
 				997EDC8321A8ACC400263DB8 /* TransactionTests.swift */,
 				9994281721A8DECA0038BCA0 /* AddressTests.swift */,
+				99C11F7521B5C6A70024DF4A /* HashTests.swift */,
 			);
 			path = DappleySwiftTests;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				997EDC8021A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift in Sources */,
 				9994281A21ADCA570038BCA0 /* DataUtil.swift in Sources */,
 				997EDC7E21A8966800263DB8 /* MnemonicTests.swift in Sources */,
+				99C11F7621B5C6A70024DF4A /* HashTests.swift in Sources */,
 				9981363321AF9B0600FBD6A5 /* DataTests.swift in Sources */,
 				997EDC8421A8ACC400263DB8 /* TransactionTests.swift in Sources */,
 			);

@@ -39,7 +39,7 @@ public class TransactionManager {
     private static func buildVout(toAddress: String, amount: BInt, totalAmount: BInt, publicKey: Data) -> [TXOutput]{
         var outputList: [TXOutput] = [TXOutput]()
         print("amount:\(amount.description) -- total: \(totalAmount.description)")
-        var txOutput = TXOutput(value: amount, pubKeyHash: HashUtil.getPublicKeyHash(address: toAddress), contract: "")
+        var txOutput = TXOutput(value: amount, pubKeyHash: AddressUtil.getPublicKeyHash(address: toAddress), contract: "")
         
         outputList.append(txOutput)
         

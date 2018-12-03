@@ -20,11 +20,12 @@ public struct AddressUtil {
     }
     public static func generateAddressFromPublickeyHash(pubKeyHash: Data) -> String{
         let fullPubHash: Data = Data(pubKeyHash.bytes)
-        print(fullPubHash.bytes)
         let checksum = CryptoHash.sha256(CryptoHash.sha256(fullPubHash)).bytes
-        print("checksum: \(checksum)")
-        print(checksum.prefix(4))
-        print((fullPubHash + checksum.prefix(4)).bytes)
         return Base58.encode(fullPubHash + checksum.prefix(4))
     }
+    public static func getPublicKeyHash(address: String) -> Data{
+        let fullPubHash = Data(base58Decoding: address)!
+        return fullPubHash.dropLast(4)
+    }
+    
 }

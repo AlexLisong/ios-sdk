@@ -16,14 +16,7 @@ class DataTests: XCTestCase {
     func testDataAndBInt() {
         var bint = BInt(17)
         let int = DataUtil.data2BInt(data: Data(bytes: [1, 109, 139, 74, 212, 0]))!
-        print(int)
-        print(DataUtil.toByteArray(value: 1))
-        let int2: Int = 1570000000000
-        print(try! (RLP.encode(int2).bytes))
-        //bint = BInt()
-        bint = BInt(1570)
-        print(bint)
-        print(int)
+        XCTAssertEqual([0, 0, 0, 1], DataUtil.toByteArray(value: 1))
     }
     
 }
