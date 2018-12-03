@@ -12,14 +12,13 @@ public class TransactionManager {
     
     private static let TIP_DEFAULT: UInt64 = 1
     
-    public static func newTransaction(utxos: [Utxo], toAddress: String, amount: BInt, privateKey: Data) -> Transaction{
+    public static func newTransaction(utxos: [Utxo], parcel: Parcel, privateKey: Data) -> Transaction{
         let publicKey = HashUtil.getPublicKey(privateKey: privateKey)
         var (totalAmount, inputList) = buildVin(utxos: utxos, publicKey: publicKey)
-        let tip = TIP_DEFAULT
-        totalAmount = totalAmount - BInt(tip)
-        let outputList = buildVout(toAddress: toAddress, amount: amount, totalAmount: totalAmount, publicKey: publicKey)
+        totalAmount = totalAmount - BInt(parcel.tip)
+        let outputList = buildVout(parcel:parcel, totalAmount: totalAmount, publicKey: publicKey)
         
-        var transaction = Transaction.init(vin: inputList, vout: outputList, tip: tip)
+        var transaction = Transaction.init(vin: inputList, vout: outputList, tip: parcel.tip)
         transaction.sign(privateKey: privateKey, utxos: utxos)
         return transaction
     }
@@ -36,15 +35,15 @@ public class TransactionManager {
         return (totalAmount,inputList)
         
     }
-    private static func buildVout(toAddress: String, amount: BInt, totalAmount: BInt, publicKey: Data) -> [TXOutput]{
+    private static func buildVout(parcel: Parcel, totalAmount: BInt, publicKey: Data) -> [TXOutput]{
         var outputList: [TXOutput] = [TXOutput]()
-        print("amount:\(amount.description) -- total: \(totalAmount.description)")
-        var txOutput = TXOutput(value: amount, pubKeyHash: AddressUtil.getPublicKeyHash(address: toAddress), contract: "")
+        print("amount:\(parcel.value.description) -- total: \(totalAmount.description)")
+        var txOutput = TXOutput(value: parcel.value, pubKeyHash: AddressUtil.getPublicKeyHash(address: parcel.toAddress), contract: parcel.contract)
         
         outputList.append(txOutput)
         
-        if(totalAmount > amount){
-            let left = totalAmount - amount
+        if(totalAmount > parcel.value){
+            let left = totalAmount - parcel.value
             print("left:\(left.description) -- total: \(totalAmount.description)")
 
             txOutput = TXOutput(value: left, pubKeyHash: HashUtil.getPublicKeyHash(publicKey: publicKey), contract: "")

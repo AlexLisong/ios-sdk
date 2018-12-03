@@ -38,7 +38,14 @@ class DappleySwiftTests: XCTestCase {
     func testGRPCSend(){
         let rpc = RpcProvider (host: "127.0.0.1:50050")
         var amount:BInt = 3
-        rpc.send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", to: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", amount: amount, privateKey: Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15"))
+        var parcel = Parcel(toAddress: "dMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", tip: 2, value: amount, contract: "")
+        rpc.send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", parcel: parcel, privateKey: Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15"))
+    }
+    func testGRPCSendContract(){
+        let rpc = RpcProvider (host: "127.0.0.1:50050")
+        var amount:BInt = 3
+        var parcel = Parcel(toAddress: "cMjVoMPgZonQ6QKUT7efvHzUFNTT8r1qSp", tip: 2, value: amount, contract: "hello world")
+        rpc.send(from: "dFQd3DCkKJ226LBVDCFanHM7c891AGxbZW", parcel: parcel, privateKey: Data(hex: "0f5645a3a724a0e079df5f3b477da82b280d64c750a2d499291fc66b3f1deb15"))
     }
     func testPerformanceExample() {
         // This is an example of a performance test case.

@@ -34,10 +34,10 @@ public struct RpcProvider {
         self.adminClient =  Rpcpb_AdminServiceServiceClient.init(channel: self.channel)
     }
 
-    public func send(from: String, to: String, amount: BInt, privateKey: Data) -> String{
+    public func send(from: String, parcel: Parcel, privateKey: Data) -> String{
         var request = Rpcpb_SendTransactionRequest.init()
         
-        request.transaction = TransactionManager.newTransaction(utxos: getUtxos(address: from), toAddress: to, amount: amount, privateKey: privateKey).toProto()
+        request.transaction = TransactionManager.newTransaction(utxos: getUtxos(address: from), parcel: parcel, privateKey: privateKey).toProto()
         print("request: \(request.transaction.textFormatString())")
         print("request: \(try? request.transaction.jsonString())")
 
