@@ -36,17 +36,9 @@ public struct RpcProvider {
 
     public func send(from: String, parcel: Parcel, privateKey: Data) -> String{
         var request = Rpcpb_SendTransactionRequest.init()
-        
         request.transaction = TransactionManager.newTransaction(utxos: getUtxos(address: from), parcel: parcel, privateKey: privateKey).toProto()
-        print("request: \(request.transaction.textFormatString())")
-        print("request: \(try? request.transaction.jsonString())")
-
         let response = try? self.serviceClient.rpcSendTransaction(request)
-        
-        print("rpcSend:\(response?.textFormatString())")
-       
-        return response?.textFormatString() ?? ""
-        
+        return "Return code: \(response?.errorCode)" ?? "RPC error: response is empty"
     }
     public func getUtxos(address: String) -> [Utxo]{
         
@@ -58,17 +50,14 @@ public struct RpcProvider {
         for u in response!.utxos{
             utxoList.append(Utxo(amount: u.amount,publicKeyHash: u.publicKeyHash,txid: u.txid,txIndex: Int32(u.txIndex)))
         }
-        for u in utxoList{
-            print("utxo: \(u.amount) - \(u.publicKeyHash)")
-        }
         return utxoList
     }
-    public func getBlocks() -> Int{
-        var request = Rpcpb_GetBlocksRequest.init()
-        request.maxCount = 20
-        let response = try? self.serviceClient.rpcGetBlocks(request)
-        return response?.blocks.count ?? 0
-    }
+//    public func getBlocks() -> Int{
+//        var request = Rpcpb_GetBlocksRequest.init()
+//        request.maxCount = 20
+//        let response = try? self.serviceClient.rpcGetBlocks(request)
+//        return response?.blocks.count ?? -1
+//    }
     
     public func getBalance(address: String) -> Int64{
         var request = Rpcpb_GetBalanceRequest.init()
@@ -78,12 +67,12 @@ public struct RpcProvider {
         return response?.amount ?? -1
     }
     
-    public func getBlockByHeight() -> Int{
-        var request = Rpcpb_GetBlockByHeightRequest()
-        request.height = 1
-        let response = try? serviceClient.rpcGetBlockByHeight(request)
-        return (response?.block.hashValue)!
-    }
+//    public func getBlockByHeight() -> Int{
+//        var request = Rpcpb_GetBlockByHeightRequest()
+//        request.height = 1
+//        let response = try? serviceClient.rpcGetBlockByHeight(request)
+//        return (response?.block.hashValue)!
+//    }
     
     public func getBlockchainInfo() -> UInt64{
         let request = Rpcpb_GetBlockchainInfoRequest.init()

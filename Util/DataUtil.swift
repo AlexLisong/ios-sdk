@@ -11,10 +11,7 @@ import EthereumKit
 
 public struct DataUtil {
     public static func data2BInt(data: Data) -> BInt?{
-        //BInt(<#T##nStr: String##String#>, radix: data)
-        print("datahex: \(data.toHexString())")
-        let bint = fromHexStringToBInt(nStr: data.toHexString(),radix: 16)! //try! RLP.encode(BInt(nStr: data.toHexString(), radix: 16)!)
-        print("bint: \(bint)")
+        let bint = fromHexStringToBInt(nStr: data.toHexString(),radix: 16)!
         return bint
     }
     public static func bint2Data(bint: BInt) -> Data?{

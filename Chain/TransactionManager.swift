@@ -27,7 +27,6 @@ public class TransactionManager {
         var totalAmount: BInt = 0
         var inputList: [TXInput] = [TXInput]()
         for u in utxos{
-            print("utxo amount: \(u.amount.description) -- \(u.txid.bytes)")
             txInput = TXInput.init(txid: u.txid, vout: u.txIndex, pubKey: publicKey)
             totalAmount += u.amount
             inputList.append(txInput)
@@ -37,15 +36,12 @@ public class TransactionManager {
     }
     private static func buildVout(parcel: Parcel, totalAmount: BInt, publicKey: Data) -> [TXOutput]{
         var outputList: [TXOutput] = [TXOutput]()
-        print("amount:\(parcel.value.description) -- total: \(totalAmount.description)")
         var txOutput = TXOutput(value: parcel.value, pubKeyHash: AddressUtil.getPublicKeyHash(address: parcel.toAddress), contract: parcel.contract)
         
         outputList.append(txOutput)
         
         if(totalAmount > parcel.value){
             let left = totalAmount - parcel.value
-            print("left:\(left.description) -- total: \(totalAmount.description)")
-
             txOutput = TXOutput(value: left, pubKeyHash: HashUtil.getPublicKeyHash(publicKey: publicKey), contract: "")
             outputList.append(txOutput)
         }

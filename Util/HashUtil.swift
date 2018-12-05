@@ -33,7 +33,6 @@ public struct HashUtil {
     }
     public static func getPublicKeyHash(publicKey: Data, isUserAddress: Bool=true) -> Data{
         let sha = publicKey.bytes.sha3(.sha256)
-        print(sha.toHexString())
         return Data(bytes: (isUserAddress ? versionUser : versionContract) + CryptoHash.ripemd160(Data(bytes: sha)).bytes)
     }
 

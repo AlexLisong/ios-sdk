@@ -28,9 +28,6 @@ public struct Utxo {
         var utxoMap = Dictionary<String,Utxo>()
         for u in utxos {
             utxoMap[u.txid.toHexString() + "-" + String(u.txIndex)] = u
-            
-            print("prev utxo\(u.txid.toHexString() + "-" + String(u.txIndex)))")
-            print("utxo \(u.txid)")
         }
         return utxoMap;
     }

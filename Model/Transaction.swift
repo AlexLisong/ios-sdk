@@ -39,12 +39,8 @@ public struct Transaction {
     internal func toProto() -> Corepb_Transaction{
         var transaction = Corepb_Transaction()
         transaction.id = self.id
-        print("transaction id :\(transaction.id.bytes)")
         for v in self.vin{
         transaction.vin.append(v.toProto())
-            print("v sig: \(v.signature.bytes)")
-            print("v id: \(v.txid.bytes)")
-           print("v pub: \(v.pubKey.bytes)")
         }
         for v in self.vout{
         transaction.vout.append(v.toProto())
@@ -65,7 +61,6 @@ public struct Transaction {
             tranCopy.vin[index].pubKey = (utxo?.publicKeyHash)!
             // get deepClone's hash value
             let txCopyHash = tranCopy.hash()
-            print("copy hash: \(tranCopy.hash())")
             // recover old pubKey
             tranCopy.vin[index].pubKey = oldPubKey
 
@@ -79,11 +74,8 @@ public struct Transaction {
     public func serialized() -> Data {
         var data = Data()
         data += vin.flatMap { $0.serialized() }
-        print("data: -- vin\(data.bytes)")
         data += vout.flatMap { $0.serialized() }
-        print("data: -- vout\(data.bytes)")
         data += Data(bytes: DataUtil.uInt64toByteArray(value: tip))
-        print("data: -- vdata\(data.bytes)")
         return data
     }
    
@@ -117,8 +109,6 @@ public struct Transaction {
                 txNewOutput = TXOutput();
                 txNewOutput.pubKeyHash = u.pubKeyHash
                 txNewOutput.value = u.value
-                print(u.value.description)
-                print(txNewOutput.value.description)
                 transaction.vout.append(txNewOutput)
             }
         }
