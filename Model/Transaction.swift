@@ -17,12 +17,12 @@ public struct Transaction {
     
     public var vout: [TXOutput] = []
     
-    public var tip: UInt64 = 0
+    public var tip: BInt = 0
     
     public init() {
         
     }
-    public init(vin: [TXInput], vout: [TXOutput], tip: UInt64) {
+    public init(vin: [TXInput], vout: [TXOutput], tip: BInt) {
         self.tip = tip
         self.vin = vin
         self.vout = vout
@@ -45,7 +45,7 @@ public struct Transaction {
         for v in self.vout{
         transaction.vout.append(v.toProto())
         }
-        transaction.tip = self.tip
+        transaction.tip = DataUtil.bint2Data(bint: self.tip)!
         return transaction
     }
     private mutating func buildSignValue(utxoMap : Dictionary<String, Utxo>,transactionCopy : Transaction, privKey: Data) {
@@ -75,7 +75,7 @@ public struct Transaction {
         var data = Data()
         data += vin.flatMap { $0.serialized() }
         data += vout.flatMap { $0.serialized() }
-        data += Data(bytes: DataUtil.uInt64toByteArray(value: tip))
+        data += DataUtil.bint2Data(bint: tip)!
         return data
     }
    

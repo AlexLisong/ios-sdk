@@ -15,7 +15,7 @@ public class TransactionManager {
     public static func newTransaction(utxos: [Utxo], parcel: Parcel, privateKey: Data) -> Transaction{
         let publicKey = HashUtil.getPublicKey(privateKey: privateKey)
         var (totalAmount, inputList) = buildVin(utxos: utxos, publicKey: publicKey)
-        totalAmount = totalAmount - BInt(parcel.tip)
+        totalAmount = totalAmount - parcel.tip
         let outputList = buildVout(parcel:parcel, totalAmount: totalAmount, publicKey: publicKey)
         
         var transaction = Transaction.init(vin: inputList, vout: outputList, tip: parcel.tip)

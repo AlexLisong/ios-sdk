@@ -115,9 +115,9 @@ struct Rpcpb_SendRequest {
 
   var walletpath: String = String()
 
-  var tip: UInt64 = 0
+  var tip: Data = SwiftProtobuf.Internal.emptyData
 
-  var contract: String = String()
+  var data: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -487,6 +487,30 @@ struct Rpcpb_SendTransactionResponse {
   init() {}
 }
 
+struct Rpcpb_SendBatchTransactionRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var transaction: [Corepb_Transaction] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Rpcpb_SendBatchTransactionResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var errorCode: [UInt32] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Rpcpb_GetNewTransactionsRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -734,7 +758,7 @@ extension Rpcpb_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     3: .same(proto: "amount"),
     4: .same(proto: "Walletpath"),
     5: .same(proto: "tip"),
-    6: .same(proto: "contract"),
+    6: .same(proto: "data"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -744,8 +768,8 @@ extension Rpcpb_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
       case 2: try decoder.decodeSingularStringField(value: &self.to)
       case 3: try decoder.decodeSingularBytesField(value: &self.amount)
       case 4: try decoder.decodeSingularStringField(value: &self.walletpath)
-      case 5: try decoder.decodeSingularUInt64Field(value: &self.tip)
-      case 6: try decoder.decodeSingularStringField(value: &self.contract)
+      case 5: try decoder.decodeSingularBytesField(value: &self.tip)
+      case 6: try decoder.decodeSingularStringField(value: &self.data)
       default: break
       }
     }
@@ -764,11 +788,11 @@ extension Rpcpb_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if !self.walletpath.isEmpty {
       try visitor.visitSingularStringField(value: self.walletpath, fieldNumber: 4)
     }
-    if self.tip != 0 {
-      try visitor.visitSingularUInt64Field(value: self.tip, fieldNumber: 5)
+    if !self.tip.isEmpty {
+      try visitor.visitSingularBytesField(value: self.tip, fieldNumber: 5)
     }
-    if !self.contract.isEmpty {
-      try visitor.visitSingularStringField(value: self.contract, fieldNumber: 6)
+    if !self.data.isEmpty {
+      try visitor.visitSingularStringField(value: self.data, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -779,7 +803,7 @@ extension Rpcpb_SendRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     if self.amount != other.amount {return false}
     if self.walletpath != other.walletpath {return false}
     if self.tip != other.tip {return false}
-    if self.contract != other.contract {return false}
+    if self.data != other.data {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1683,6 +1707,64 @@ extension Rpcpb_SendTransactionResponse: SwiftProtobuf.Message, SwiftProtobuf._M
   }
 
   func _protobuf_generated_isEqualTo(other: Rpcpb_SendTransactionResponse) -> Bool {
+    if self.errorCode != other.errorCode {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Rpcpb_SendBatchTransactionRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SendBatchTransactionRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "transaction"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.transaction)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.transaction.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.transaction, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Rpcpb_SendBatchTransactionRequest) -> Bool {
+    if self.transaction != other.transaction {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Rpcpb_SendBatchTransactionResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SendBatchTransactionResponse"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "errorCode"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedUInt32Field(value: &self.errorCode)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.errorCode.isEmpty {
+      try visitor.visitPackedUInt32Field(value: self.errorCode, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Rpcpb_SendBatchTransactionResponse) -> Bool {
     if self.errorCode != other.errorCode {return false}
     if unknownFields != other.unknownFields {return false}
     return true

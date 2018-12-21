@@ -15,8 +15,9 @@ import EthereumKit
 @testable import DappleySwift
 
 class DappleySwiftTests: XCTestCase {
+//    private var rpc:RpcProvider = RpcProvider (host: "127.0.0.1:50050")
     private var rpc:RpcProvider = RpcProvider (host: "127.0.0.1:50050")
-    
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         //let rpc = RpcProvider (host: "18.224.247.158:50050")

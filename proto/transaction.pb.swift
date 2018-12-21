@@ -30,7 +30,7 @@ struct Corepb_Transaction {
 
   var vout: [Corepb_TXOutput] = []
 
-  var tip: UInt64 = 0
+  var tip: Data = SwiftProtobuf.Internal.emptyData
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -90,7 +90,7 @@ extension Corepb_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
       case 1: try decoder.decodeSingularBytesField(value: &self.id)
       case 2: try decoder.decodeRepeatedMessageField(value: &self.vin)
       case 3: try decoder.decodeRepeatedMessageField(value: &self.vout)
-      case 4: try decoder.decodeSingularUInt64Field(value: &self.tip)
+      case 4: try decoder.decodeSingularBytesField(value: &self.tip)
       default: break
       }
     }
@@ -106,8 +106,8 @@ extension Corepb_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     if !self.vout.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.vout, fieldNumber: 3)
     }
-    if self.tip != 0 {
-      try visitor.visitSingularUInt64Field(value: self.tip, fieldNumber: 4)
+    if !self.tip.isEmpty {
+      try visitor.visitSingularBytesField(value: self.tip, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

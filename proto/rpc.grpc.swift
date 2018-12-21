@@ -73,6 +73,12 @@ fileprivate final class Rpcpb_RpcServiceRpcSendTransactionCallBase: ClientCallUn
   override class var method: String { return "/rpcpb.RpcService/RpcSendTransaction" }
 }
 
+internal protocol Rpcpb_RpcServiceRpcSendBatchTransactionCall: ClientCallUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcSendBatchTransactionCallBase: ClientCallUnaryBase<Rpcpb_SendBatchTransactionRequest, Rpcpb_SendBatchTransactionResponse>, Rpcpb_RpcServiceRpcSendBatchTransactionCall {
+  override class var method: String { return "/rpcpb.RpcService/RpcSendBatchTransaction" }
+}
+
 internal protocol Rpcpb_RpcServiceRpcGetNewTransactionsCall: ClientCallServerStreaming {
   /// Do not call this directly, call `receive()` in the protocol extension below instead.
   func _receive(timeout: DispatchTime) throws -> Rpcpb_GetNewTransactionsResponse?
@@ -131,6 +137,11 @@ internal protocol Rpcpb_RpcServiceService: ServiceClient {
   func rpcSendTransaction(_ request: Rpcpb_SendTransactionRequest) throws -> Rpcpb_SendTransactionResponse
   /// Asynchronous. Unary.
   func rpcSendTransaction(_ request: Rpcpb_SendTransactionRequest, completion: @escaping (Rpcpb_SendTransactionResponse?, CallResult) -> Void) throws -> Rpcpb_RpcServiceRpcSendTransactionCall
+
+  /// Synchronous. Unary.
+  func rpcSendBatchTransaction(_ request: Rpcpb_SendBatchTransactionRequest) throws -> Rpcpb_SendBatchTransactionResponse
+  /// Asynchronous. Unary.
+  func rpcSendBatchTransaction(_ request: Rpcpb_SendBatchTransactionRequest, completion: @escaping (Rpcpb_SendBatchTransactionResponse?, CallResult) -> Void) throws -> Rpcpb_RpcServiceRpcSendBatchTransactionCall
 
   /// Asynchronous. Server-streaming.
   /// Send the initial message.
@@ -225,6 +236,17 @@ internal final class Rpcpb_RpcServiceServiceClient: ServiceClientBase, Rpcpb_Rpc
   /// Asynchronous. Unary.
   internal func rpcSendTransaction(_ request: Rpcpb_SendTransactionRequest, completion: @escaping (Rpcpb_SendTransactionResponse?, CallResult) -> Void) throws -> Rpcpb_RpcServiceRpcSendTransactionCall {
     return try Rpcpb_RpcServiceRpcSendTransactionCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func rpcSendBatchTransaction(_ request: Rpcpb_SendBatchTransactionRequest) throws -> Rpcpb_SendBatchTransactionResponse {
+    return try Rpcpb_RpcServiceRpcSendBatchTransactionCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func rpcSendBatchTransaction(_ request: Rpcpb_SendBatchTransactionRequest, completion: @escaping (Rpcpb_SendBatchTransactionResponse?, CallResult) -> Void) throws -> Rpcpb_RpcServiceRpcSendBatchTransactionCall {
+    return try Rpcpb_RpcServiceRpcSendBatchTransactionCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
@@ -376,4 +398,217 @@ internal final class Rpcpb_AdminServiceServiceClient: ServiceClientBase, Rpcpb_A
   }
 
 }
+
+/// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
+internal protocol Rpcpb_RpcServiceProvider: ServiceProvider {
+  func rpcGetVersion(request: Rpcpb_GetVersionRequest, session: Rpcpb_RpcServiceRpcGetVersionSession) throws -> Rpcpb_GetVersionResponse
+  func rpcGetBalance(request: Rpcpb_GetBalanceRequest, session: Rpcpb_RpcServiceRpcGetBalanceSession) throws -> Rpcpb_GetBalanceResponse
+  func rpcGetBlockchainInfo(request: Rpcpb_GetBlockchainInfoRequest, session: Rpcpb_RpcServiceRpcGetBlockchainInfoSession) throws -> Rpcpb_GetBlockchainInfoResponse
+  func rpcGetUTXO(request: Rpcpb_GetUTXORequest, session: Rpcpb_RpcServiceRpcGetUTXOSession) throws -> Rpcpb_GetUTXOResponse
+  func rpcGetBlocks(request: Rpcpb_GetBlocksRequest, session: Rpcpb_RpcServiceRpcGetBlocksSession) throws -> Rpcpb_GetBlocksResponse
+  func rpcGetBlockByHash(request: Rpcpb_GetBlockByHashRequest, session: Rpcpb_RpcServiceRpcGetBlockByHashSession) throws -> Rpcpb_GetBlockByHashResponse
+  func rpcGetBlockByHeight(request: Rpcpb_GetBlockByHeightRequest, session: Rpcpb_RpcServiceRpcGetBlockByHeightSession) throws -> Rpcpb_GetBlockByHeightResponse
+  func rpcSendTransaction(request: Rpcpb_SendTransactionRequest, session: Rpcpb_RpcServiceRpcSendTransactionSession) throws -> Rpcpb_SendTransactionResponse
+  func rpcSendBatchTransaction(request: Rpcpb_SendBatchTransactionRequest, session: Rpcpb_RpcServiceRpcSendBatchTransactionSession) throws -> Rpcpb_SendBatchTransactionResponse
+  func rpcGetNewTransactions(request: Rpcpb_GetNewTransactionsRequest, session: Rpcpb_RpcServiceRpcGetNewTransactionsSession) throws -> ServerStatus?
+}
+
+extension Rpcpb_RpcServiceProvider {
+  internal var serviceName: String { return "rpcpb.RpcService" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/rpcpb.RpcService/RpcGetVersion":
+      return try Rpcpb_RpcServiceRpcGetVersionSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetVersion(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetVersionSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetBalance":
+      return try Rpcpb_RpcServiceRpcGetBalanceSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetBalance(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetBalanceSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetBlockchainInfo":
+      return try Rpcpb_RpcServiceRpcGetBlockchainInfoSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetBlockchainInfo(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetBlockchainInfoSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetUTXO":
+      return try Rpcpb_RpcServiceRpcGetUTXOSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetUTXO(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetUTXOSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetBlocks":
+      return try Rpcpb_RpcServiceRpcGetBlocksSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetBlocks(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetBlocksSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetBlockByHash":
+      return try Rpcpb_RpcServiceRpcGetBlockByHashSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetBlockByHash(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetBlockByHashSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetBlockByHeight":
+      return try Rpcpb_RpcServiceRpcGetBlockByHeightSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetBlockByHeight(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetBlockByHeightSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcSendTransaction":
+      return try Rpcpb_RpcServiceRpcSendTransactionSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcSendTransaction(request: $0, session: $1 as! Rpcpb_RpcServiceRpcSendTransactionSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcSendBatchTransaction":
+      return try Rpcpb_RpcServiceRpcSendBatchTransactionSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcSendBatchTransaction(request: $0, session: $1 as! Rpcpb_RpcServiceRpcSendBatchTransactionSessionBase) })
+          .run()
+    case "/rpcpb.RpcService/RpcGetNewTransactions":
+      return try Rpcpb_RpcServiceRpcGetNewTransactionsSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetNewTransactions(request: $0, session: $1 as! Rpcpb_RpcServiceRpcGetNewTransactionsSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
+}
+
+internal protocol Rpcpb_RpcServiceRpcGetVersionSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetVersionSessionBase: ServerSessionUnaryBase<Rpcpb_GetVersionRequest, Rpcpb_GetVersionResponse>, Rpcpb_RpcServiceRpcGetVersionSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetBalanceSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetBalanceSessionBase: ServerSessionUnaryBase<Rpcpb_GetBalanceRequest, Rpcpb_GetBalanceResponse>, Rpcpb_RpcServiceRpcGetBalanceSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetBlockchainInfoSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetBlockchainInfoSessionBase: ServerSessionUnaryBase<Rpcpb_GetBlockchainInfoRequest, Rpcpb_GetBlockchainInfoResponse>, Rpcpb_RpcServiceRpcGetBlockchainInfoSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetUTXOSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetUTXOSessionBase: ServerSessionUnaryBase<Rpcpb_GetUTXORequest, Rpcpb_GetUTXOResponse>, Rpcpb_RpcServiceRpcGetUTXOSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetBlocksSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetBlocksSessionBase: ServerSessionUnaryBase<Rpcpb_GetBlocksRequest, Rpcpb_GetBlocksResponse>, Rpcpb_RpcServiceRpcGetBlocksSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetBlockByHashSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetBlockByHashSessionBase: ServerSessionUnaryBase<Rpcpb_GetBlockByHashRequest, Rpcpb_GetBlockByHashResponse>, Rpcpb_RpcServiceRpcGetBlockByHashSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetBlockByHeightSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetBlockByHeightSessionBase: ServerSessionUnaryBase<Rpcpb_GetBlockByHeightRequest, Rpcpb_GetBlockByHeightResponse>, Rpcpb_RpcServiceRpcGetBlockByHeightSession {}
+
+internal protocol Rpcpb_RpcServiceRpcSendTransactionSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcSendTransactionSessionBase: ServerSessionUnaryBase<Rpcpb_SendTransactionRequest, Rpcpb_SendTransactionResponse>, Rpcpb_RpcServiceRpcSendTransactionSession {}
+
+internal protocol Rpcpb_RpcServiceRpcSendBatchTransactionSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_RpcServiceRpcSendBatchTransactionSessionBase: ServerSessionUnaryBase<Rpcpb_SendBatchTransactionRequest, Rpcpb_SendBatchTransactionResponse>, Rpcpb_RpcServiceRpcSendBatchTransactionSession {}
+
+internal protocol Rpcpb_RpcServiceRpcGetNewTransactionsSession: ServerSessionServerStreaming {
+  /// Send a message to the stream. Nonblocking.
+  func send(_ message: Rpcpb_GetNewTransactionsResponse, completion: @escaping (Error?) -> Void) throws
+  /// Do not call this directly, call `send()` in the protocol extension below instead.
+  func _send(_ message: Rpcpb_GetNewTransactionsResponse, timeout: DispatchTime) throws
+
+  /// Close the connection and send the status. Non-blocking.
+  /// This method should be called if and only if your request handler returns a nil value instead of a server status;
+  /// otherwise SwiftGRPC will take care of sending the status for you.
+  func close(withStatus status: ServerStatus, completion: (() -> Void)?) throws
+}
+
+internal extension Rpcpb_RpcServiceRpcGetNewTransactionsSession {
+  /// Send a message to the stream and wait for the send operation to finish. Blocking.
+  func send(_ message: Rpcpb_GetNewTransactionsResponse, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
+}
+
+fileprivate final class Rpcpb_RpcServiceRpcGetNewTransactionsSessionBase: ServerSessionServerStreamingBase<Rpcpb_GetNewTransactionsRequest, Rpcpb_GetNewTransactionsResponse>, Rpcpb_RpcServiceRpcGetNewTransactionsSession {}
+
+/// To build a server, implement a class that conforms to this protocol.
+/// If one of the methods returning `ServerStatus?` returns nil,
+/// it is expected that you have already returned a status to the client by means of `session.close`.
+internal protocol Rpcpb_AdminServiceProvider: ServiceProvider {
+  func rpcAddPeer(request: Rpcpb_AddPeerRequest, session: Rpcpb_AdminServiceRpcAddPeerSession) throws -> Rpcpb_AddPeerResponse
+  func rpcSend(request: Rpcpb_SendRequest, session: Rpcpb_AdminServiceRpcSendSession) throws -> Rpcpb_SendResponse
+  func rpcGetPeerInfo(request: Rpcpb_GetPeerInfoRequest, session: Rpcpb_AdminServiceRpcGetPeerInfoSession) throws -> Rpcpb_GetPeerInfoResponse
+  func rpcSendFromMiner(request: Rpcpb_SendFromMinerRequest, session: Rpcpb_AdminServiceRpcSendFromMinerSession) throws -> Rpcpb_SendFromMinerResponse
+  func rpcAddProducer(request: Rpcpb_AddProducerRequest, session: Rpcpb_AdminServiceRpcAddProducerSession) throws -> Rpcpb_AddProducerResponse
+  func rpcUnlockWallet(request: Rpcpb_UnlockWalletRequest, session: Rpcpb_AdminServiceRpcUnlockWalletSession) throws -> Rpcpb_UnlockWalletResponse
+}
+
+extension Rpcpb_AdminServiceProvider {
+  internal var serviceName: String { return "rpcpb.AdminService" }
+
+  /// Determines and calls the appropriate request handler, depending on the request's method.
+  /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
+  internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
+    switch method {
+    case "/rpcpb.AdminService/RpcAddPeer":
+      return try Rpcpb_AdminServiceRpcAddPeerSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcAddPeer(request: $0, session: $1 as! Rpcpb_AdminServiceRpcAddPeerSessionBase) })
+          .run()
+    case "/rpcpb.AdminService/RpcSend":
+      return try Rpcpb_AdminServiceRpcSendSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcSend(request: $0, session: $1 as! Rpcpb_AdminServiceRpcSendSessionBase) })
+          .run()
+    case "/rpcpb.AdminService/RpcGetPeerInfo":
+      return try Rpcpb_AdminServiceRpcGetPeerInfoSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcGetPeerInfo(request: $0, session: $1 as! Rpcpb_AdminServiceRpcGetPeerInfoSessionBase) })
+          .run()
+    case "/rpcpb.AdminService/RpcSendFromMiner":
+      return try Rpcpb_AdminServiceRpcSendFromMinerSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcSendFromMiner(request: $0, session: $1 as! Rpcpb_AdminServiceRpcSendFromMinerSessionBase) })
+          .run()
+    case "/rpcpb.AdminService/RpcAddProducer":
+      return try Rpcpb_AdminServiceRpcAddProducerSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcAddProducer(request: $0, session: $1 as! Rpcpb_AdminServiceRpcAddProducerSessionBase) })
+          .run()
+    case "/rpcpb.AdminService/RpcUnlockWallet":
+      return try Rpcpb_AdminServiceRpcUnlockWalletSessionBase(
+        handler: handler,
+        providerBlock: { try self.rpcUnlockWallet(request: $0, session: $1 as! Rpcpb_AdminServiceRpcUnlockWalletSessionBase) })
+          .run()
+    default:
+      throw HandleMethodError.unknownMethod
+    }
+  }
+}
+
+internal protocol Rpcpb_AdminServiceRpcAddPeerSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_AdminServiceRpcAddPeerSessionBase: ServerSessionUnaryBase<Rpcpb_AddPeerRequest, Rpcpb_AddPeerResponse>, Rpcpb_AdminServiceRpcAddPeerSession {}
+
+internal protocol Rpcpb_AdminServiceRpcSendSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_AdminServiceRpcSendSessionBase: ServerSessionUnaryBase<Rpcpb_SendRequest, Rpcpb_SendResponse>, Rpcpb_AdminServiceRpcSendSession {}
+
+internal protocol Rpcpb_AdminServiceRpcGetPeerInfoSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_AdminServiceRpcGetPeerInfoSessionBase: ServerSessionUnaryBase<Rpcpb_GetPeerInfoRequest, Rpcpb_GetPeerInfoResponse>, Rpcpb_AdminServiceRpcGetPeerInfoSession {}
+
+internal protocol Rpcpb_AdminServiceRpcSendFromMinerSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_AdminServiceRpcSendFromMinerSessionBase: ServerSessionUnaryBase<Rpcpb_SendFromMinerRequest, Rpcpb_SendFromMinerResponse>, Rpcpb_AdminServiceRpcSendFromMinerSession {}
+
+internal protocol Rpcpb_AdminServiceRpcAddProducerSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_AdminServiceRpcAddProducerSessionBase: ServerSessionUnaryBase<Rpcpb_AddProducerRequest, Rpcpb_AddProducerResponse>, Rpcpb_AdminServiceRpcAddProducerSession {}
+
+internal protocol Rpcpb_AdminServiceRpcUnlockWalletSession: ServerSessionUnary {}
+
+fileprivate final class Rpcpb_AdminServiceRpcUnlockWalletSessionBase: ServerSessionUnaryBase<Rpcpb_UnlockWalletRequest, Rpcpb_UnlockWalletResponse>, Rpcpb_AdminServiceRpcUnlockWalletSession {}
 
