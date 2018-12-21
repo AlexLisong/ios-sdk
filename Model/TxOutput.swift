@@ -34,6 +34,7 @@ public struct TXOutput {
         var data = Data()
         data += DataUtil.bint2Data(bint: self.value)!
         data += self.pubKeyHash.bytes
+        data += self.contract.bytes
         return data
     }
 }
