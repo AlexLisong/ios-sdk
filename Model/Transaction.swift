@@ -109,6 +109,7 @@ public struct Transaction {
                 txNewOutput = TXOutput();
                 txNewOutput.pubKeyHash = u.pubKeyHash
                 txNewOutput.value = u.value
+                txNewOutput.contract = u.contract
                 transaction.vout.append(txNewOutput)
             }
         }
