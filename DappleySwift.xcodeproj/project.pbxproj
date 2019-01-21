@@ -23,6 +23,12 @@
 
 /* Begin PBXBuildFile section */
 		58C27DDDA62868F3179115F4 /* Pods_DappleySwift_DappleySwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99DD696CDDF940394F8C1013 /* Pods_DappleySwift_DappleySwiftTests.framework */; };
+		9938722221F3F62D002E771A /* MnemonicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938722121F3F62D002E771A /* MnemonicManager.swift */; };
+		9938722421F3F65A002E771A /* WordDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938722321F3F65A002E771A /* WordDict.swift */; };
+		9938722721F3F6BC002E771A /* English.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938722621F3F6BC002E771A /* English.swift */; };
+		9938722921F3F7F3002E771A /* Chinese.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938722821F3F7F3002E771A /* Chinese.swift */; };
+		9938722B21F3F985002E771A /* DataConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938722A21F3F985002E771A /* DataConvertable.swift */; };
+		9938722D21F3FCB5002E771A /* MnemonicManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9938722C21F3FCB5002E771A /* MnemonicManagerTests.swift */; };
 		995C119B218D185F0072FFF5 /* DappleySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995C1191218D185F0072FFF5 /* DappleySwift.framework */; };
 		995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995C119F218D185F0072FFF5 /* DappleySwiftTests.swift */; };
 		995C11A2218D185F0072FFF5 /* DappleySwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 995C1194218D185F0072FFF5 /* DappleySwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -88,6 +94,12 @@
 		2A4828E660987C11C551C809 /* Pods-DappleySwift-DappleySwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift-DappleySwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A8D1BBB587B4F21296F411D /* Pods-DappleySwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift/Pods-DappleySwift.debug.xcconfig"; sourceTree = "<group>"; };
 		9051EE4C807503C10A5F590C /* Pods-DappleySwift-DappleySwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DappleySwift-DappleySwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DappleySwift-DappleySwiftTests/Pods-DappleySwift-DappleySwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		9938722121F3F62D002E771A /* MnemonicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicManager.swift; sourceTree = "<group>"; };
+		9938722321F3F65A002E771A /* WordDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDict.swift; sourceTree = "<group>"; };
+		9938722621F3F6BC002E771A /* English.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = English.swift; sourceTree = "<group>"; };
+		9938722821F3F7F3002E771A /* Chinese.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chinese.swift; sourceTree = "<group>"; };
+		9938722A21F3F985002E771A /* DataConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConvertable.swift; sourceTree = "<group>"; };
+		9938722C21F3FCB5002E771A /* MnemonicManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicManagerTests.swift; sourceTree = "<group>"; };
 		995C1191218D185F0072FFF5 /* DappleySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DappleySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		995C1194218D185F0072FFF5 /* DappleySwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DappleySwift.h; sourceTree = "<group>"; };
 		995C1195218D185F0072FFF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,6 +174,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9938722521F3F6A3002E771A /* Mnemonic */ = {
+			isa = PBXGroup;
+			children = (
+				9938722121F3F62D002E771A /* MnemonicManager.swift */,
+				9938722321F3F65A002E771A /* WordDict.swift */,
+				9938722621F3F6BC002E771A /* English.swift */,
+				9938722821F3F7F3002E771A /* Chinese.swift */,
+				9938722A21F3F985002E771A /* DataConvertable.swift */,
+			);
+			path = Mnemonic;
+			sourceTree = "<group>";
+		};
 		995C1187218D185F0072FFF5 = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +233,7 @@
 				997EDC8321A8ACC400263DB8 /* TransactionTests.swift */,
 				9994281721A8DECA0038BCA0 /* AddressTests.swift */,
 				99C11F7521B5C6A70024DF4A /* HashTests.swift */,
+				9938722C21F3FCB5002E771A /* MnemonicManagerTests.swift */,
 			);
 			path = DappleySwiftTests;
 			sourceTree = "<group>";
@@ -263,6 +288,7 @@
 		9994281221A8D8DA0038BCA0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9938722521F3F6A3002E771A /* Mnemonic */,
 				9994281C21ADE4010038BCA0 /* Encoding.swift */,
 			);
 			path = Core;
@@ -514,14 +540,19 @@
 				9994281B21ADDF390038BCA0 /* DataUtil.swift in Sources */,
 				996BCAB421A6CD7400D8CB13 /* HashUtil.swift in Sources */,
 				995C11BF2193E98E0072FFF5 /* peerlist.pb.swift in Sources */,
+				9938722221F3F62D002E771A /* MnemonicManager.swift in Sources */,
 				995C11BC2193DCB40072FFF5 /* block.proto in Sources */,
 				995C11BA2193DCB40072FFF5 /* rpc.proto in Sources */,
 				997EDC7C21A892E400263DB8 /* TransactionManager.swift in Sources */,
+				9938722421F3F65A002E771A /* WordDict.swift in Sources */,
 				99C11F7821B5D1C70024DF4A /* Parcel.swift in Sources */,
 				995C11B82193DCB40072FFF5 /* block.pb.swift in Sources */,
+				9938722721F3F6BC002E771A /* English.swift in Sources */,
 				997EDC7521A8900C00263DB8 /* Transaction.swift in Sources */,
 				9994281D21ADE4010038BCA0 /* Encoding.swift in Sources */,
 				995C11BD2193DCB40072FFF5 /* transaction.pb.swift in Sources */,
+				9938722921F3F7F3002E771A /* Chinese.swift in Sources */,
+				9938722B21F3F985002E771A /* DataConvertable.swift in Sources */,
 				995C11B92193DCB40072FFF5 /* transaction.proto in Sources */,
 				995C11B62193DCB40072FFF5 /* rpc.pb.swift in Sources */,
 				9994281421A8D9CF0038BCA0 /* KeyUtil.swift in Sources */,
@@ -542,6 +573,7 @@
 				997EDC8221A8995200263DB8 /* WalletTests.swift in Sources */,
 				995C11A0218D185F0072FFF5 /* DappleySwiftTests.swift in Sources */,
 				9994281821A8DECA0038BCA0 /* AddressTests.swift in Sources */,
+				9938722D21F3FCB5002E771A /* MnemonicManagerTests.swift in Sources */,
 				997EDC8021A8982F00263DB8 /* PrivateKeyAndPublicKeyTests.swift in Sources */,
 				9994281A21ADCA570038BCA0 /* DataUtil.swift in Sources */,
 				997EDC7E21A8966800263DB8 /* MnemonicTests.swift in Sources */,
