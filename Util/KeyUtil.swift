@@ -12,6 +12,7 @@ import CryptoEthereumSwift
 import secp256k1
 
 public struct KeyUtil {
+
     public static func generateNewPrivateKey() -> Data{
 
         func check(_ vch: [UInt8]) -> Bool {
@@ -48,5 +49,10 @@ public struct KeyUtil {
         } while (status != 0 || !check([UInt8](key)))
         
         return key
+    }
+    
+    public static func getPrivateKeyFromMnemonic(mnemonic: [String]) -> Data{
+        let seed = try! MnemonicManager.createSeed(mnemonic: mnemonic)
+        return CryptoHash.sha256(seed)
     }
 }

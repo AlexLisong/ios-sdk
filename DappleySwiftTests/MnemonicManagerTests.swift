@@ -34,9 +34,7 @@ final class MnemonicManagerTests: XCTestCase {
             .split(separator: " ")
             .map(String.init)
         
-        let seed = try! MnemonicManager.createSeed(mnemonic: mnemonic)
-        
-        let pk = CryptoHash.sha256(seed)
+        let pk = KeyUtil.getPrivateKeyFromMnemonic(mnemonic: mnemonic)
         XCTAssertEqual(
             pk.toHexString(),
             "bb29db21e32ffcb942071ca41ab313d524d67e6b61f6353e7991f5c33a8a8ff7"
@@ -50,9 +48,8 @@ final class MnemonicManagerTests: XCTestCase {
             .split(separator: " ")
             .map(String.init)
         
-        let seed = try! MnemonicManager.createSeed(mnemonic: mnemonic)
-        
-        let pk = CryptoHash.sha256(seed)
+        let pk = KeyUtil.getPrivateKeyFromMnemonic(mnemonic: mnemonic)
+
         XCTAssertEqual(
             pk.toHexString(),
             "d24cc925bfa4089f5adb8996a227c844fab4357507e3cdaf2f95295a7ac04992"
@@ -64,9 +61,8 @@ final class MnemonicManagerTests: XCTestCase {
             .split(separator: " ")
             .map(String.init)
         
-        let seed = try! MnemonicManager.createSeed(mnemonic: mnemonic)
-        
-        let pk = CryptoHash.sha256(seed)
+        let pk = KeyUtil.getPrivateKeyFromMnemonic(mnemonic: mnemonic)
+
         XCTAssertEqual(
             pk.toHexString(),
             "40fc893f2488a55624883a82ac6d8c399c8a99c222005b879881f0a3e1406ac6"
@@ -78,9 +74,8 @@ final class MnemonicManagerTests: XCTestCase {
             .split(separator: " ")
             .map(String.init)
         
-        let seed = try! MnemonicManager.createSeed(mnemonic: mnemonic)
-        
-        let pk = CryptoHash.sha256(seed)
+        let pk = KeyUtil.getPrivateKeyFromMnemonic(mnemonic: mnemonic)
+
         XCTAssertEqual(
             pk.toHexString(),
             "fe8f91a1b4ef0b22e867d1930459d98201955c333b6c2c470e110d06980d3c3d"
